@@ -60,43 +60,46 @@ function Header({ onOpen }) {
   const navItems = ['Home', 'Services', 'Why GlowBiz', 'Insights', 'Contact'];
 
   return (
-    <header className={`site-header sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'scrolled' : ''}`}>
-      <div className="header-inner flex items-center justify-between">
-        <Link to="/" className="brand-logo-link shrink-0" aria-label="GlowBiz Solutions home">
-          <img src="/logo.png" alt="GlowBiz Solutions" className="brand-logo-img" />
-        </Link>
-        <nav className="desktop-nav flex items-center" aria-label="Main navigation">
-          {navItems.map(page => {
-            const active = page === 'Home'
-              ? location.pathname === '/'
-              : page === 'Services' && location.pathname.startsWith('/services');
-            return (
-              <button
-                key={page}
-                onClick={e => e.preventDefault()}
-                className={`nav-link ${active ? 'active' : ''}`}
-                aria-current={active ? 'page' : undefined}
-              >
-                {page}
-              </button>
-            );
-          })}
-        </nav>
-        <div className="header-actions flex items-center gap-3">
-          <Button className="header-cta" onClick={e => e.preventDefault()}>
-            Book Consultation
-          </Button>
-          <button
-            className="menu-toggle p-2.5 rounded-full text-slate-900 border border-slate-300 bg-white/95 shadow-sm hover:text-royal hover:border-royal transition-all"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+    <>
+      <header className={`site-header sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'scrolled' : ''}`}>
+        <div className="header-inner flex items-center justify-between">
+          <Link to="/" className="brand-logo-link shrink-0" aria-label="GlowBiz Solutions home">
+            <img src="/logo.png" alt="GlowBiz Solutions" className="brand-logo-img" />
+          </Link>
+          <nav className="desktop-nav flex items-center" aria-label="Main navigation">
+            {navItems.map(page => {
+              const active = page === 'Home'
+                ? location.pathname === '/'
+                : page === 'Services' && location.pathname.startsWith('/services');
+              return (
+                <button
+                  key={page}
+                  onClick={e => e.preventDefault()}
+                  className={`nav-link ${active ? 'active' : ''}`}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {page}
+                </button>
+              );
+            })}
+          </nav>
+          <div className="header-actions flex items-center gap-3">
+            <Button className="header-cta" onClick={e => e.preventDefault()}>
+              Book Consultation
+            </Button>
+            <button
+              className="menu-toggle p-2.5 rounded-full text-slate-900 border border-slate-300 bg-white/95 shadow-sm hover:text-royal hover:border-royal transition-all"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
+
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -105,7 +108,7 @@ function Header({ onOpen }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: '-100%' }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="mobile-fullscreen-nav fixed inset-0 z-50 flex flex-col justify-between bg-white text-slate-900 p-6 sm:p-10 overflow-y-auto"
+            className="mobile-fullscreen-nav fixed inset-0 z-[999] flex flex-col justify-between bg-white text-slate-900 p-6 sm:p-10 overflow-y-auto"
             aria-label="Mobile navigation"
           >
             {/* Top Bar */}
@@ -162,7 +165,7 @@ function Header({ onOpen }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
 
