@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import { motion, MotionConfig, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence, MotionConfig, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronRight, Menu, X, Download, MapPin, Mail, Phone, ShieldCheck, Clock, Building2 } from 'lucide-react';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { ServicesSection, ServicePage } from './services';
@@ -33,6 +33,17 @@ function Header({ onOpen }) {
   }, []);
 
   useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
     const close = e => { if (e.key === 'Escape') setMenuOpen(false); };
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);
@@ -62,7 +73,7 @@ function Header({ onOpen }) {
             return (
               <button
                 key={page}
-                onClick={() => navigate(page)}
+                onClick={e => e.preventDefault()}
                 className={`nav-link ${active ? 'active' : ''}`}
                 aria-current={active ? 'page' : undefined}
               >
@@ -72,11 +83,11 @@ function Header({ onOpen }) {
           })}
         </nav>
         <div className="header-actions flex items-center gap-3">
-          <Button className="header-cta" onClick={() => onOpen('Consultation')}>
+          <Button className="header-cta" onClick={e => e.preventDefault()}>
             Book Consultation
           </Button>
           <button
-            className="menu-toggle p-2 rounded-full border border-slate-200/80 text-slate-700 hover:text-navy hover:border-royal transition-all"
+            className="menu-toggle p-2.5 rounded-full text-slate-900 border border-slate-300 bg-white/95 shadow-sm hover:text-royal hover:border-royal transition-all"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
@@ -86,19 +97,71 @@ function Header({ onOpen }) {
           </button>
         </div>
       </div>
-      {menuOpen && (
-        <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">
-          {navItems.map(page => (
-            <button key={page} onClick={() => navigate(page)} className="mobile-nav-item">
-              <span>{page}</span>
-              <ArrowRight size={16} />
-            </button>
-          ))}
-          <Button className="mobile-cta w-full" onClick={() => { setMenuOpen(false); onOpen('Consultation'); }}>
-            Book Consultation
-          </Button>
-        </nav>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="mobile-navigation"
+            initial={{ opacity: 0, y: '-100%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '-100%' }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="mobile-fullscreen-nav fixed inset-0 z-50 flex flex-col justify-between bg-white text-slate-900 p-6 sm:p-10 overflow-y-auto"
+            aria-label="Mobile navigation"
+          >
+            {/* Top Bar */}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+              <Link to="/" onClick={e => e.preventDefault()} className="brand-logo-link" aria-label="GlowBiz Solutions home">
+                <img src="/logo.png" alt="GlowBiz Solutions" className="brand-logo-img h-10" />
+              </Link>
+              <button
+                className="p-3 rounded-full bg-slate-100 text-slate-800 hover:bg-slate-200 transition-all"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Main Links List */}
+            <div className="my-auto py-8 space-y-3">
+              <p className="text-xs font-bold tracking-[3px] text-sky-800 uppercase mb-4 px-2">NAVIGATION</p>
+              {navItems.map((page, idx) => {
+                const active = page === 'Home' ? location.pathname === '/' : page === 'Services' && location.pathname.startsWith('/services');
+                const num = String(idx + 1).padStart(2, '0');
+                return (
+                  <motion.button
+                    key={page}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.08 + idx * 0.05, duration: 0.35 }}
+                    onClick={e => e.preventDefault()}
+                    className={`group w-full flex items-center justify-between py-3.5 px-4 rounded-2xl transition-all ${
+                      active ? 'bg-sky-50 text-royal font-bold' : 'text-slate-800 hover:bg-slate-50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="text-sm font-bold text-sky-600 font-mono tracking-wider">{num}</span>
+                      <span className="text-2xl sm:text-3xl font-semibold tracking-tight">{page}</span>
+                    </div>
+                    <ChevronRight size={22} className={`transition-transform group-hover:translate-x-1 ${active ? 'text-royal' : 'text-slate-300'}`} />
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            {/* Bottom Footer Details */}
+            <div className="pt-6 border-t border-slate-100 space-y-4">
+              <Button className="w-full min-h-[54px] text-base justify-center shadow-xl shadow-sky-900/15" onClick={e => e.preventDefault()}>
+                Book Consultation
+              </Button>
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 pt-2 px-1">
+                <span className="flex items-center gap-1.5"><MapPin size={14} className="text-royal shrink-0" /> DIFC Gate Precinct, Dubai</span>
+                <span className="flex items-center gap-1.5"><Phone size={14} className="text-royal shrink-0" /> +971 (0)4 800 4569</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
@@ -117,7 +180,7 @@ function Hero({ onOpen }) {
         <motion.p {...entrance(.1)} className="eyebrow flex items-center"><span aria-hidden="true" />YOUR GROWTH PARTNER IN THE UAE</motion.p>
         <motion.h1 {...entrance(.23)} id="hero-heading"><span>Strategic UAE Business</span><span>&amp; Wealth Advisory</span><span>for Global Clients</span></motion.h1>
         <motion.p {...entrance(.4)} className="hero-description">Helping entrepreneurs, investors and international families establish, manage and grow with confidence in the UAE.</motion.p>
-        <motion.div {...entrance(.55)} className="hero-actions flex flex-wrap"><Button onClick={() => onOpen('Consultation')}>Book Consultation</Button><Button onClick={() => onOpen('Services')}>Explore Services</Button></motion.div>
+        <motion.div {...entrance(.55)} className="hero-actions flex flex-wrap"><Button onClick={e => e.preventDefault()}>Book Consultation</Button><Button onClick={e => e.preventDefault()}>Explore Services</Button></motion.div>
       </div>
     </div>
   </section>;
@@ -149,7 +212,7 @@ function CtaSection({ onOpen }) {
           If you are considering establishing a presence in the UAE — whether through business, investment, or residency — GlowBiz can help you structure the right approach from the beginning.
         </motion.p>
         <motion.div {...entrance(0.4)} className="cta-actions flex items-center justify-center flex-wrap gap-4">
-          <Button onClick={() => onOpen('Consultation')}>
+          <Button onClick={e => e.preventDefault()}>
             Book Consultation
           </Button>
         </motion.div>
@@ -169,7 +232,7 @@ function Footer({ onOpen }) {
       <div className="footer-top max-w-7xl mx-auto px-6 py-16">
         <div className="footer-grid grid grid-cols-1 min-[600px]:grid-cols-2 min-[1100px]:grid-cols-5 gap-10">
           <div className="footer-col footer-brand-col min-[1100px]:col-span-2">
-            <Link to="/" className="brand-logo-link shrink-0 mb-5 block" aria-label="GlowBiz Solutions home">
+            <Link to="/" onClick={e => e.preventDefault()} className="brand-logo-link shrink-0 mb-5 block" aria-label="GlowBiz Solutions home">
               <img src="/logo.png" alt="GlowBiz Solutions" className="brand-logo-img" />
             </Link>
             <p className="footer-brand-desc max-w-md text-slate-600 text-sm leading-relaxed mb-6">
@@ -185,31 +248,31 @@ function Footer({ onOpen }) {
           <div className="footer-col">
             <h4 className="footer-title text-navy font-bold text-sm tracking-wider uppercase mb-4">Core Services</h4>
             <ul className="footer-links space-y-2.5 text-sm text-slate-600">
-              <li><Link to="/services/uae-business-setup" className="hover:text-royal transition">UAE Business Setup</Link></li>
-              <li><Link to="/services/banking-kyc-advisory" className="hover:text-royal transition">Banking & KYC Advisory</Link></li>
-              <li><Link to="/services/corporate-tax-compliance" className="hover:text-royal transition">Corporate Tax & Compliance</Link></li>
-              <li><Link to="/services/golden-visa-residency" className="hover:text-royal transition">Golden Visa & Residency</Link></li>
+              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">UAE Business Setup</a></li>
+              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Banking & KYC Advisory</a></li>
+              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Corporate Tax & Compliance</a></li>
+              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Golden Visa & Residency</a></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <h4 className="footer-title text-navy font-bold text-sm tracking-wider uppercase mb-4">Navigation</h4>
             <ul className="footer-links space-y-2.5 text-sm text-slate-600">
-              <li><Link to="/" className="hover:text-royal transition">Home</Link></li>
-              <li><Link to="/services" className="hover:text-royal transition">Services</Link></li>
-              <li><button onClick={() => onOpen('Why GlowBiz')} className="hover:text-royal transition text-left">Why GlowBiz</button></li>
-              <li><button onClick={() => onOpen('Insights')} className="hover:text-royal transition text-left">Insights</button></li>
-              <li><button onClick={() => onOpen('Consultation')} className="hover:text-royal transition text-left">Contact</button></li>
+              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Home</a></li>
+              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Services</a></li>
+              <li><button onClick={e => e.preventDefault()} className="hover:text-royal transition text-left">Why GlowBiz</button></li>
+              <li><button onClick={e => e.preventDefault()} className="hover:text-royal transition text-left">Insights</button></li>
+              <li><button onClick={e => e.preventDefault()} className="hover:text-royal transition text-left">Contact</button></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <h4 className="footer-title text-navy font-bold text-sm tracking-wider uppercase mb-4">Governance</h4>
             <ul className="footer-links space-y-2.5 text-sm text-slate-600">
-              <li><span className="cursor-pointer hover:text-royal transition">Privacy Policy</span></li>
-              <li><span className="cursor-pointer hover:text-royal transition">Terms of Service</span></li>
-              <li><span className="cursor-pointer hover:text-royal transition">Regulatory Disclosures</span></li>
-              <li><span className="cursor-pointer hover:text-royal transition">Client Charter</span></li>
+              <li><span className="cursor-pointer hover:text-royal transition" onClick={e => e.preventDefault()}>Privacy Policy</span></li>
+              <li><span className="cursor-pointer hover:text-royal transition" onClick={e => e.preventDefault()}>Terms of Service</span></li>
+              <li><span className="cursor-pointer hover:text-royal transition" onClick={e => e.preventDefault()}>Regulatory Disclosures</span></li>
+              <li><span className="cursor-pointer hover:text-royal transition" onClick={e => e.preventDefault()}>Client Charter</span></li>
             </ul>
           </div>
         </div>
