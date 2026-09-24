@@ -1,0 +1,34 @@
+import { chromium, expect } from '@playwright/test';
+const browser=await chromium.launch({channel:'msedge',headless:true});
+const page=await browser.newPage({reducedMotion:'reduce'});
+const errors=[];
+page.on('pageerror',error=>errors.push(error.message));
+for(const [name,width,height,columns] of [['desktop',1652,952,4],['laptop',1150,900,4],['tablet',820,1180,2],['mobile',390,844,1],['small-mobile',320,740,1]]) {
+  await page.setViewportSize({width,height});
+  await page.goto('http://127.0.0.1:5199/',{waitUntil:'networkidle'});
+  const section=page.locator('#process');
+  for(const stage of await section.locator('.process-stage').all()) await stage.scrollIntoViewIfNeeded();
+  await section.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(250);
+  await expect(section.locator('.process-stage')).toHaveCount(4);
+  await expect(section.locator('.process-trust li')).toHaveCount(3);
+  if(await page.locator('.process-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length)!==columns) throw new Error(`${name}: incorrect columns`);
+  if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)) throw new Error(`${name}: horizontal overflow`);
+  if(await section.locator('img').evaluateAll(imgs=>imgs.some(img=>!img.complete||!img.naturalWidth))) throw new Error(`${name}: missing image`);
+  const heights=await section.locator('.process-panel').evaluateAll(els=>els.map(el=>el.getBoundingClientRect().height));
+  if(Math.max(...heights)-Math.min(...heights)>1) throw new Error(`${name}: unequal panel heights`);
+  await section.screenshot({path:`screenshots/process-${name}.png`});
+  console.log(`${name}: stages, trust indicators, responsive columns, images, equal panels and overflow passed`);
+}
+await page.emulateMedia({reducedMotion:'no-preference'});
+await page.setViewportSize({width:1652,height:952});
+await page.reload({waitUntil:'networkidle'});
+await page.locator('#process').scrollIntoViewIfNeeded();
+await page.waitForTimeout(1800);
+await expect(page.locator('.process-stage').first()).toBeVisible();
+await page.locator('.process-photo').first().hover();
+await page.waitForTimeout(800);
+const transform=await page.locator('.process-photo img').first().evaluate(el=>getComputedStyle(el).transform);
+if(transform==='none') throw new Error('Missing image hover effect');
+if(errors.length) throw new Error(errors.join('\n'));
+await browser.close();
