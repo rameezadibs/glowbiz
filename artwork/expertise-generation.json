@@ -1,0 +1,25 @@
+{
+  "tool": "Built-in image_gen",
+  "assets": [
+    {
+      "name": "banking",
+      "path": "C:\\Users\\rayaa\\.codex\\generated_images\\01a11f66-15b9-70c3-be8d-337d8d009aea\\exec-dd563428-720f-418c-89e8-8c2fdde312d4.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: website service showcase architectural background. Reference image is style and composition guide. Generate a matching architectural scene featuring a sophisticated contemporary UAE private banking institution, refined monumental blue glass financial architecture. Keep sweeping white curved canopy above, curved glass framing with a very thin blue illuminated edge, reflective water and curved white platform below, distant Dubai skyline and Burj Khalifa on far right. Wide 16:9 composition: left 55 percent clean pale ice blue negative space for live website content, subject concentrated right 45 percent. Soft bright morning daylight; white, ice blue, sky blue, deep navy. No text, labels, UI, people, money, flags, passports, gold or orange lighting. Premium photorealistic architectural rendering closely following the reference."
+    },
+    {
+      "name": "residency",
+      "path": "C:\\Users\\rayaa\\.codex\\generated_images\\01a11f66-15b9-70c3-be8d-337d8d009aea\\exec-7d5fa9ec-2493-4b2e-b639-478cd96ca930.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: website service showcase architectural background. Reference image is style and composition guide. Generate a matching architectural scene featuring elegant contemporary Dubai residential towers and landscaped permanent residences, a sense of long-term presence. Keep sweeping white curved canopy above, curved glass framing with a very thin blue illuminated edge, reflective water and curved white platform below, distant Dubai skyline and Burj Khalifa on far right. Wide 16:9 composition: left 55 percent clean pale ice blue negative space for live website content, subject concentrated right 45 percent. Soft bright morning daylight; white, ice blue, sky blue, deep navy. No text, labels, UI, people, money, flags, passports, gold or orange lighting. Premium photorealistic architectural rendering closely following the reference."
+    },
+    {
+      "name": "investment",
+      "path": "C:\\Users\\rayaa\\.codex\\generated_images\\01a11f66-15b9-70c3-be8d-337d8d009aea\\exec-9009ab88-4949-4b10-9c2a-11675a5e5d73.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: website service showcase architectural background. Reference image is style and composition guide. Generate a matching architectural scene featuring an exceptional contemporary waterfront UAE villa and premium real estate development. Keep sweeping white curved canopy above, curved glass framing with a very thin blue illuminated edge, reflective water and curved white platform below, distant Dubai skyline and Burj Khalifa on far right. Wide 16:9 composition: left 55 percent clean pale ice blue negative space for live website content, subject concentrated right 45 percent. Soft bright morning daylight; white, ice blue, sky blue, deep navy. No text, labels, UI, people, money, flags, passports, gold or orange lighting. Premium photorealistic architectural rendering closely following the reference."
+    },
+    {
+      "name": "family",
+      "path": "C:\\Users\\rayaa\\.codex\\generated_images\\01a11f66-15b9-70c3-be8d-337d8d009aea\\exec-1a05c958-74b0-4ca4-bfd8-7e67771ff79e.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: website service showcase architectural background. Reference image is style and composition guide. Generate a matching architectural scene featuring a mature elegant broad-canopied tree in a structured landscaped courtyard with enduring white architecture, symbolizing stability and legacy. Keep sweeping white curved canopy above, curved glass framing with a very thin blue illuminated edge, reflective water and curved white platform below, distant Dubai skyline and Burj Khalifa on far right. Wide 16:9 composition: left 55 percent clean pale ice blue negative space for live website content, subject concentrated right 45 percent. Soft bright morning daylight; white, ice blue, sky blue, deep navy. No text, labels, UI, people, money, flags, passports, gold or orange lighting. Premium photorealistic architectural rendering closely following the reference."
+    }
+  ]
+}

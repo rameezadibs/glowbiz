@@ -1,9 +1,12 @@
+import ServiceDetailPage, { detailPages } from './service-detail';
 import React, { useRef, useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { motion, AnimatePresence, MotionConfig, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronRight, Menu, X, Download, MapPin, Mail, Phone, ShieldCheck, Clock, Building2 } from 'lucide-react';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import { ServicesSection, ServicePage } from './services';
+import { ExpertiseSection } from './expertise';
+import BusinessStructuringPage from './business-structuring';
+import { ServicesSection, ServicePage, ServicesHero, ConsultationPage } from './services';
 import ProcessSection from './process';
 import './styles.css';
 
@@ -52,8 +55,9 @@ function Header({ onOpen }) {
   const navigate = page => {
     setMenuOpen(false);
     if (page === 'Home') route('/');
-    else if (page === 'Contact') onOpen('Consultation');
+    else if (page === 'Contact') route('/contact');
     else if (page === 'Why GlowBiz') onOpen('Why GlowBiz');
+    else if (page === 'Services') route('/services');
     else onOpen(page);
   };
 
@@ -70,11 +74,15 @@ function Header({ onOpen }) {
             {navItems.map(page => {
               const active = page === 'Home'
                 ? location.pathname === '/'
-                : page === 'Services' && location.pathname.startsWith('/services');
+                : page === 'Services'
+                ? location.pathname.startsWith('/services')
+                : page === 'Contact'
+                ? location.pathname === '/contact'
+                : false;
               return (
                 <button
                   key={page}
-                  onClick={e => e.preventDefault()}
+                  onClick={() => navigate(page)}
                   className={`nav-link ${active ? 'active' : ''}`}
                   aria-current={active ? 'page' : undefined}
                 >
@@ -84,7 +92,7 @@ function Header({ onOpen }) {
             })}
           </nav>
           <div className="header-actions flex items-center gap-3">
-            <Button className="header-cta" onClick={e => e.preventDefault()}>
+            <Button className="header-cta" onClick={() => { setMenuOpen(false); onOpen('Consultation'); }}>
               Book Consultation
             </Button>
             <button
@@ -113,7 +121,7 @@ function Header({ onOpen }) {
           >
             {/* Top Bar */}
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-              <Link to="/" onClick={e => e.preventDefault()} className="brand-logo-link" aria-label="GlowBiz Solutions home">
+              <Link to="/" onClick={() => setMenuOpen(false)} className="brand-logo-link" aria-label="GlowBiz Solutions home">
                 <img src="/logo.png" alt="GlowBiz Solutions" className="brand-logo-img h-10" />
               </Link>
               <button
@@ -129,7 +137,13 @@ function Header({ onOpen }) {
             <div className="my-auto py-8 space-y-3">
               <p className="text-xs font-bold tracking-[3px] text-sky-800 uppercase mb-4 px-2">NAVIGATION</p>
               {navItems.map((page, idx) => {
-                const active = page === 'Home' ? location.pathname === '/' : page === 'Services' && location.pathname.startsWith('/services');
+                const active = page === 'Home'
+                  ? location.pathname === '/'
+                  : page === 'Services'
+                  ? location.pathname.startsWith('/services')
+                  : page === 'Contact'
+                  ? location.pathname === '/contact'
+                  : false;
                 const num = String(idx + 1).padStart(2, '0');
                 return (
                   <motion.button
@@ -137,7 +151,7 @@ function Header({ onOpen }) {
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.08 + idx * 0.05, duration: 0.35 }}
-                    onClick={e => e.preventDefault()}
+                    onClick={() => navigate(page)}
                     className={`group w-full flex items-center justify-between py-3.5 px-4 rounded-2xl transition-all ${
                       active ? 'bg-sky-50 text-royal font-bold' : 'text-slate-800 hover:bg-slate-50'
                     }`}
@@ -154,7 +168,7 @@ function Header({ onOpen }) {
 
             {/* Bottom Footer Details */}
             <div className="pt-6 border-t border-slate-100 space-y-4">
-              <Button className="w-full min-h-[54px] text-base justify-center shadow-xl shadow-sky-900/15" onClick={e => e.preventDefault()}>
+              <Button className="w-full min-h-[54px] text-base justify-center shadow-xl shadow-sky-900/15" onClick={() => { setMenuOpen(false); onOpen('Consultation'); }}>
                 Book Consultation
               </Button>
               <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 pt-2 px-1">
@@ -171,6 +185,7 @@ function Header({ onOpen }) {
 
 function Hero({ onOpen }) {
   const reduceMotion = useReducedMotion();
+  const route = useNavigate();
   const entrance = delay => ({ initial: { opacity: 0, y: reduceMotion ? 0 : 18 }, animate: { opacity: 1, y: 0 }, transition: { duration: .85, delay, ease: [.2, .65, .3, 1] } });
   return <section id="home" className="hero relative isolate overflow-hidden" aria-labelledby="hero-heading">
     <motion.picture className="hero-picture absolute inset-0 -z-20" initial={false} animate={reduceMotion ? {} : { scale: [1, 1.025] }} transition={{ duration: 24, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}>
@@ -183,13 +198,30 @@ function Hero({ onOpen }) {
         <motion.p {...entrance(.1)} className="eyebrow flex items-center"><span aria-hidden="true" />YOUR GROWTH PARTNER IN THE UAE</motion.p>
         <motion.h1 {...entrance(.23)} id="hero-heading"><span>Strategic UAE Business</span><span>&amp; Wealth Advisory</span><span>for Global Clients</span></motion.h1>
         <motion.p {...entrance(.4)} className="hero-description">Helping entrepreneurs, investors and international families establish, manage and grow with confidence in the UAE.</motion.p>
-        <motion.div {...entrance(.55)} className="hero-actions flex flex-wrap"><Button onClick={e => e.preventDefault()}>Book Consultation</Button><Button onClick={e => e.preventDefault()}>Explore Services</Button></motion.div>
+        <motion.div {...entrance(.55)} className="hero-actions flex flex-wrap"><Button onClick={() => onOpen('Consultation')}>Book Consultation</Button><Button onClick={() => route('/services')}>Explore Services</Button></motion.div>
       </div>
     </div>
   </section>;
 }
 
-function CtaSection({ onOpen }) {
+const servicesCta = {
+  eyebrow: 'YOUR UAE JOURNEY, STRUCTURED WITH PURPOSE',
+  title: 'Build Your UAE Presence with the Right Strategy',
+  description: 'Whether you are planning to establish a business in the UAE, secure residency, prepare for UAE banking, or explore investment opportunities, GlowBiz provides strategic guidance to help you make informed decisions and structure your next steps with confidence.',
+  buttonText: 'Book a Consultation',
+  buttonTo: '/contact',
+  image: '/services/CTA.png',
+};
+
+function CtaSection({
+  onOpen,
+  eyebrow = 'READY TO ELEVATE YOUR UAE PRESENCE?',
+  title = 'Start Your UAE Journey with Clarity',
+  description = 'If you are considering establishing a presence in the UAE — whether through business, investment, or residency — GlowBiz can help you structure the right approach from the beginning.',
+  buttonText = 'Book Consultation',
+  buttonTo = null,
+  image = '/CTA.png',
+}) {
   const reduceMotion = useReducedMotion();
   const entrance = delay => ({
     initial: reduceMotion ? false : { opacity: 0, y: 20 },
@@ -201,23 +233,29 @@ function CtaSection({ onOpen }) {
   return (
     <section className="cta-section relative isolate overflow-hidden" aria-labelledby="cta-heading">
       <picture className="cta-picture absolute inset-0 -z-20 pointer-events-none">
-        <img src="/CTA.png" alt="" className="w-full h-full object-cover object-center" />
+        <img src={image} alt="" className="w-full h-full object-cover object-center" />
       </picture>
       <div className="cta-wash absolute inset-0 -z-10 bg-gradient-to-r from-slate-950/70 via-slate-900/60 to-slate-950/70" />
       <div className="cta-inner mx-auto text-center relative z-10">
         <motion.p {...entrance(0.1)} className="cta-eyebrow inline-flex items-center gap-2">
-          <span>READY TO ELEVATE YOUR UAE PRESENCE?</span>
+          <span>{eyebrow}</span>
         </motion.p>
         <motion.h2 {...entrance(0.2)} id="cta-heading" className="cta-title">
-          Start Your UAE Journey with Clarity
+          {title}
         </motion.h2>
         <motion.p {...entrance(0.3)} className="cta-description mx-auto">
-          If you are considering establishing a presence in the UAE — whether through business, investment, or residency — GlowBiz can help you structure the right approach from the beginning.
+          {description}
         </motion.p>
         <motion.div {...entrance(0.4)} className="cta-actions flex items-center justify-center flex-wrap gap-4">
-          <Button onClick={e => e.preventDefault()}>
-            Book Consultation
-          </Button>
+          {buttonTo ? (
+            <Link to={buttonTo} className="button button-primary">
+              {buttonText} <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          ) : (
+            <Button onClick={() => onOpen('Consultation')}>
+              {buttonText}
+            </Button>
+          )}
         </motion.div>
         <motion.div {...entrance(0.5)} className="cta-highlights flex items-center justify-center flex-wrap gap-8 mt-10">
           <span className="cta-highlight-item"><ShieldCheck size={18} /> Fast-Track Company Setup</span>
@@ -235,7 +273,7 @@ function Footer({ onOpen }) {
       <div className="footer-top max-w-7xl mx-auto px-6 py-16">
         <div className="footer-grid grid grid-cols-1 min-[600px]:grid-cols-2 min-[1100px]:grid-cols-5 gap-10">
           <div className="footer-col footer-brand-col min-[1100px]:col-span-2">
-            <Link to="/" onClick={e => e.preventDefault()} className="brand-logo-link shrink-0 mb-5 block" aria-label="GlowBiz Solutions home">
+            <Link to="/" className="brand-logo-link shrink-0 mb-5 block" aria-label="GlowBiz Solutions home">
               <img src="/logo.png" alt="GlowBiz Solutions" className="brand-logo-img" />
             </Link>
             <p className="footer-brand-desc max-w-md text-slate-600 text-sm leading-relaxed mb-6">
@@ -251,31 +289,32 @@ function Footer({ onOpen }) {
           <div className="footer-col">
             <h4 className="footer-title text-navy font-bold text-sm tracking-wider uppercase mb-4">Core Services</h4>
             <ul className="footer-links space-y-2.5 text-sm text-slate-600">
-              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">UAE Business Setup</a></li>
-              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Banking & KYC Advisory</a></li>
-              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Corporate Tax & Compliance</a></li>
-              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Golden Visa & Residency</a></li>
+              <li><Link to="/services/business-structuring" className="hover:text-royal transition">UAE Business Setup</Link></li>
+              <li><Link to="/services/banking-financial-structuring" className="hover:text-royal transition">Banking & Financial Structuring</Link></li>
+              <li><Link to="/services/investment-real-estate" className="hover:text-royal transition">Investment & Real Estate</Link></li>
+              <li><Link to="/services/golden-visa-residency" className="hover:text-royal transition">Golden Visa & Residency</Link></li>
+              <li><Link to="/services/family-protection-succession-advisory" className="hover:text-royal transition">Family Protection & Succession Advisory</Link></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <h4 className="footer-title text-navy font-bold text-sm tracking-wider uppercase mb-4">Navigation</h4>
             <ul className="footer-links space-y-2.5 text-sm text-slate-600">
-              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Home</a></li>
-              <li><a href="#" onClick={e => e.preventDefault()} className="hover:text-royal transition">Services</a></li>
-              <li><button onClick={e => e.preventDefault()} className="hover:text-royal transition text-left">Why GlowBiz</button></li>
-              <li><button onClick={e => e.preventDefault()} className="hover:text-royal transition text-left">Insights</button></li>
-              <li><button onClick={e => e.preventDefault()} className="hover:text-royal transition text-left">Contact</button></li>
+              <li><Link to="/" className="hover:text-royal transition">Home</Link></li>
+              <li><Link to="/services" className="hover:text-royal transition">Services</Link></li>
+              <li><button onClick={() => onOpen('Why GlowBiz')} className="hover:text-royal transition text-left">Why GlowBiz</button></li>
+              <li><button onClick={() => onOpen('Insights')} className="hover:text-royal transition text-left">Insights</button></li>
+              <li><Link to="/contact" className="hover:text-royal transition">Contact</Link></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <h4 className="footer-title text-navy font-bold text-sm tracking-wider uppercase mb-4">Governance</h4>
             <ul className="footer-links space-y-2.5 text-sm text-slate-600">
-              <li><span className="cursor-pointer hover:text-royal transition" onClick={e => e.preventDefault()}>Privacy Policy</span></li>
-              <li><span className="cursor-pointer hover:text-royal transition" onClick={e => e.preventDefault()}>Terms of Service</span></li>
-              <li><span className="cursor-pointer hover:text-royal transition" onClick={e => e.preventDefault()}>Regulatory Disclosures</span></li>
-              <li><span className="cursor-pointer hover:text-royal transition" onClick={e => e.preventDefault()}>Client Charter</span></li>
+              <li><span className="cursor-pointer hover:text-royal transition" onClick={() => onOpen('Why GlowBiz')}>Privacy Policy</span></li>
+              <li><span className="cursor-pointer hover:text-royal transition" onClick={() => onOpen('Why GlowBiz')}>Terms of Service</span></li>
+              <li><span className="cursor-pointer hover:text-royal transition" onClick={() => onOpen('Why GlowBiz')}>Regulatory Disclosures</span></li>
+              <li><span className="cursor-pointer hover:text-royal transition" onClick={() => onOpen('Why GlowBiz')}>Client Charter</span></li>
             </ul>
           </div>
         </div>
@@ -305,7 +344,7 @@ function DetailDialog({ page, onClose, onOpen }) {
   const detail = details[page];
   return <dialog ref={ref} onCancel={onClose} onClick={e => {if(e.target === ref.current) onClose();}} aria-labelledby="dialog-title" className="detail-dialog">
     <button className="dialog-close" onClick={onClose} aria-label="Close dialog"><X size={22} /></button>
-    {page === 'Consultation' ? <><p className="dialog-eyebrow">LET’S TALK ABOUT YOUR NEXT CHAPTER</p><h2 id="dialog-title">Begin a conversation.</h2><p className="dialog-description">Prepare your consultation inquiry. Download a copy to share with your GlowBiz advisor; this form does not send a request or book an appointment.</p><form onSubmit={prepareInquiry} className="inquiry-form"><label>Full name<input autoComplete="name" name="name" required placeholder="Your name" /></label><label>Email address<input autoComplete="email" name="email" type="email" required placeholder="you@company.com" /></label><label>Area of interest<select name="interest"><option>UAE Business Setup</option><option>Banking & KYC Advisory</option><option>Corporate Tax & Compliance</option><option>Golden Visa & Residency</option></select></label><label>How can we help?<textarea name="message" rows="3" placeholder="Tell us a little about your goals" required /></label><button className="button button-primary" type="submit">Prepare inquiry<Download size={18} /></button>{downloaded && <p role="status" className="form-status">Your inquiry is ready. Save and share it with your advisor. No request has been sent.</p>}</form></> : detail && <><p className="dialog-eyebrow">{detail.eyebrow}</p><h2 id="dialog-title">{detail.title}</h2><p className="dialog-description">{detail.text}</p>{detail.items && <ul className="detail-list">{detail.items.map(item => <li key={item}>{item}<ArrowRight size={18} aria-hidden="true" /></li>)}</ul>}<Button onClick={() => onOpen('Consultation')}>Book Consultation</Button></>}
+    {page === 'Consultation' ? <><p className="dialog-eyebrow">LET’S TALK ABOUT YOUR NEXT CHAPTER</p><h2 id="dialog-title">Begin a conversation.</h2><p className="dialog-description">Prepare your consultation inquiry. Download a copy to share with your GlowBiz advisor; this form does not send a request or book an appointment.</p><form onSubmit={prepareInquiry} className="inquiry-form"><label>Full name<input autoComplete="name" name="name" required placeholder="Your name" /></label><label>Email address<input autoComplete="email" name="email" type="email" required placeholder="you@company.com" /></label><label>Area of interest<select name="interest"><option>UAE Business Setup</option><option>Banking & Financial Structuring</option><option>Investment & Real Estate</option><option>Golden Visa & Residency</option><option>Family Protection & Succession Advisory</option></select></label><label>How can we help?<textarea name="message" rows="3" placeholder="Tell us a little about your goals" required /></label><button className="button button-primary" type="submit">Prepare inquiry<Download size={18} /></button>{downloaded && <p role="status" className="form-status">Your inquiry is ready. Save and share it with your advisor. No request has been sent.</p>}</form></> : detail && <><p className="dialog-eyebrow">{detail.eyebrow}</p><h2 id="dialog-title">{detail.title}</h2><p className="dialog-description">{detail.text}</p>{detail.items && <ul className="detail-list">{detail.items.map(item => <li key={item}>{item}<ArrowRight size={18} aria-hidden="true" /></li>)}</ul>}<Button onClick={() => onOpen('Consultation')}>Book Consultation</Button></>}
   </dialog>;
 }
 
@@ -314,8 +353,8 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const onOpen = target => target === 'Services' ? navigate('/services') : setPage(target);
-  useEffect(() => { window.scrollTo(0, 0); setPage(null); document.title = location.pathname.startsWith('/services') ? 'Our Services — GlowBiz Solutions' : 'GlowBiz Solutions — Your Growth Partner in the UAE'; }, [location.pathname]);
-  return <MotionConfig reducedMotion="user"><a className="skip-link" href="#main-content">Skip to content</a><Header onOpen={onOpen} /><Routes><Route path="/" element={<main id="main-content"><Hero onOpen={onOpen} /><ServicesSection /><ProcessSection /><CtaSection onOpen={onOpen} /></main>} /><Route path="/services" element={<main id="main-content"><ServicesSection standalone /><CtaSection onOpen={onOpen} /></main>} /><Route path="/services/:serviceId" element={<><ServicePage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} /></>} /><Route path="*" element={<main id="main-content" className="service-detail"><h1>Page not found</h1><Link to="/">Return home</Link></main>} /></Routes><Footer onOpen={onOpen} /><DetailDialog page={page} onClose={() => setPage(null)} onOpen={onOpen} /></MotionConfig>;
+  useEffect(() => { window.scrollTo(0, 0); setPage(null); document.title = detailPages.some(data => location.pathname === `/services/${data.id}`) ? `${detailPages.find(data => location.pathname === `/services/${data.id}`).label} \u2014 GlowBiz Solutions` : location.pathname === '/services/business-structuring' ? 'Business Structuring — GlowBiz Solutions' : location.pathname.startsWith('/services') ? 'Our Services — GlowBiz Solutions' : 'GlowBiz Solutions — Your Growth Partner in the UAE'; }, [location.pathname]);
+  return <MotionConfig reducedMotion="user"><a className="skip-link" href="#main-content">Skip to content</a><Header onOpen={onOpen} /><Routes><Route path="/" element={<main id="main-content"><Hero onOpen={onOpen} /><ServicesSection /><ProcessSection /><CtaSection onOpen={onOpen} /></main>} /><Route path="/services" element={<main id="main-content"><ServicesHero /><ExpertiseSection /><CtaSection onOpen={onOpen} {...servicesCta} /></main>} /><Route path="/contact" element={<ConsultationPage onConsultation={() => setPage('Consultation')} />} /><Route path="/services/business-structuring" element={<BusinessStructuringPage />} />{detailPages.map(data => <Route key={data.id} path={`/services/${data.id}`} element={<ServiceDetailPage data={data} />} />)}<Route path="/services/banking-financial-structuring" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/services/banking" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/banking" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/services/golden-visa" element={<ServiceDetailPage data={detailPages[1]} />} /><Route path="/golden-visa-residency" element={<ServiceDetailPage data={detailPages[1]} />} /><Route path="/services/investment" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/services/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/investment-real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/investment" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/services/family-protection-succession-advisory" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/family" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/:serviceId" element={<><ServicePage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></>} /><Route path="*" element={<main id="main-content" className="service-detail"><h1>Page not found</h1><Link to="/">Return home</Link></main>} /></Routes><Footer onOpen={onOpen} /><DetailDialog page={page} onClose={() => setPage(null)} onOpen={onOpen} /></MotionConfig>;
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><BrowserRouter><App /></BrowserRouter></React.StrictMode>);

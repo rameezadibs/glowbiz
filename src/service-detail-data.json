@@ -1,0 +1,360 @@
+[
+  {
+    "id": "banking",
+    "kind": "banking",
+    "label": "Banking",
+    "number": "02",
+    "heading": "Prepare for UAE Banking with Greater Clarity.",
+    "intro": [
+      "Bank Account Opening",
+      "Opening a UAE bank account is not just a paperwork exercise-it is a risk assessment process. Documentation quality, business clarity, residency status, and source of funds all influence the outcome.",
+      "GlowBiz helps clients prepare before approaching the bank, so the process is more credible, better sequenced, and more realistic."
+    ],
+    "help": [
+      "Preparing for personal and business account opening in the UAE",
+      "Clarifying the documentation banks typically expect",
+      "Improving the overall presentation of the client profile",
+      "Aligning business setup, residency, and banking in the right order",
+      "Helping clients understand why delays or rejections happen"
+    ],
+    "faqs": [
+      {
+        "question": "Is it better to become resident before opening a bank account?",
+        "answer": [
+          "In many cases, yes. UAE residency usually makes the banking process more straightforward and gives banks greater comfort. It also opens access to a wider range of banking options."
+        ]
+      },
+      {
+        "question": "Can non-residents open bank accounts in the UAE?",
+        "answer": [
+          "Yes, but the process is usually more restrictive and document-heavy. Non-resident applications often face deeper KYC review and narrower account options."
+        ]
+      },
+      {
+        "question": "What should come first-company, visa, or bank account?",
+        "answer": [
+          "For most entrepreneurs, the usual sequence is company first, then residency, then bank account opening. This gives the bank a clearer commercial story and stronger supporting documents."
+        ]
+      },
+      {
+        "question": "Why do bank applications get delayed?",
+        "answer": [
+          "The most common reasons are weak documentation, unclear business activity, inconsistent profile information, or insufficient evidence of source of funds and business substance."
+        ]
+      }
+    ],
+    "cta": "Preparing for a UAE bank account opening?",
+    "button": "Book Consultation",
+    "solutions": [
+      {
+        "title": "Banking Assistance",
+        "paragraphs": [
+          "Support for personal and corporate bank account opening, including banking strategy, documentation preparation, and coordination with suitable banking partners.",
+          "GlowBiz helps clients approach banking with a coherent profile and supporting documentation rather than treating account opening as a simple application process."
+        ]
+      },
+      {
+        "title": "KYC & Compliance Consultancy",
+        "paragraphs": [
+          "Assistance with banking KYC, compliance documentation, business profiles, shareholder profiles, source of funds explanation, address proof support, VAT/accounting coordination, and regulatory readiness.",
+          "The objective is to identify and address documentation or profile gaps before they become issues during the banking process."
+        ]
+      },
+      {
+        "title": "Credit Facility & Mortgage Support",
+        "paragraphs": [
+          "Assistance in exploring suitable credit facilities, mortgage options, and banking solutions for personal, business, or commercial property requirements.",
+          "Where financing forms part of the client's wider UAE strategy, GlowBiz helps coordinate the requirements with appropriate banking and specialist partners."
+        ]
+      }
+    ],
+    "documents": [
+      "Passport copy",
+      "UAE visa and Emirates ID for residents",
+      "Company incorporation documents",
+      "Trade licence and constitutional documents",
+      "Proof of address",
+      "Business activity explanation",
+      "Source of funds / source of wealth explanation",
+      "Supporting financial or commercial background documents"
+    ]
+  },
+  {
+    "id": "golden-visa-residency",
+    "kind": "residency",
+    "label": "Golden Visa & Residency",
+    "number": "03",
+    "heading": "Structure Your UAE Residency with Purpose.",
+    "intro": [
+      "Residency planning in the UAE should support your broader business, investment, and personal objectives. The right route depends on whether you are entering as a company owner, investor, entrepreneur, professional, or long-term resident.",
+      "GlowBiz helps clients assess the most suitable path and how it should be sequenced with business setup, property ownership, and banking."
+    ],
+    "help": [
+      "Business-linked residency planning",
+      "Investor and entrepreneur residency pathways",
+      "Golden Visa pathway evaluation",
+      "Sequencing residency with company setup or property investment",
+      "Long-term residency planning for individuals and families"
+    ],
+    "faqs": [
+      {
+        "question": "Do I need a company to get a Golden Visa?",
+        "answer": [
+          "No.",
+          "You can qualify through:",
+          "• Property investment (AED 2M+)",
+          "• Salary (AED 30,000+)",
+          "• Bank deposit (AED 2M+)",
+          "Business setup is not required in these cases."
+        ]
+      },
+      {
+        "question": "What are the main Golden Visa routes (2026)?",
+        "answer": [
+          "• Property Investor (AED 2M+)",
+          "• High Salary Professional (AED 30K/month)",
+          "• Fixed Deposit (AED 2M)",
+          "• Entrepreneur / Startup Founder",
+          "• Specialized Professionals (Doctors, Engineers, IT)",
+          "• Outstanding Talent (Arts, Sports, Digital)",
+          "• Students / Researchers"
+        ]
+      },
+      {
+        "question": "Is the Golden Visa linked to corporate tax?",
+        "answer": [
+          "No.",
+          "Corporate tax depends on business activity, not your residency type."
+        ]
+      },
+      {
+        "question": "Can I stay outside UAE for long periods?",
+        "answer": [
+          "Yes.",
+          "Golden Visa holders are not restricted by the 6-month rule."
+        ]
+      },
+      {
+        "question": "Is Golden Visa enough for banking?",
+        "answer": [
+          "While the Golden Visa strengthens your profile, banking decisions are still based on overall financial credibility, documentation quality, and commercial rationale."
+        ]
+      }
+    ],
+    "cta": "Need help assessing the right UAE residency route?",
+    "button": "Schedule a Consultation",
+    "service": [
+      "Assistance with investor, employee, dependent, and Golden Visa applications, including documentation, application coordination, and renewal support.",
+      "Long-term UAE residency options can also be assessed based on the applicable eligibility criteria and the client's broader business, investment and family requirements."
+    ],
+    "benefitIntro": "The UAE Golden Visa is not just a residency — it is a long-term stability framework for global investors and professionals.",
+    "benefits": [
+      {
+        "title": "10-year renewable residency",
+        "text": "Long-term stability without frequent renewals or uncertainty."
+      },
+      {
+        "title": "No local sponsor required",
+        "text": "Full independence over your residency status."
+      },
+      {
+        "title": "Sponsor your family with ease",
+        "text": "Includes spouse, children (no strict age cap), and domestic staff."
+      },
+      {
+        "title": "No restriction on time outside UAE",
+        "text": "Unlike standard visas, extended travel does not cancel residency."
+      },
+      {
+        "title": "Stronger banking access",
+        "text": "Better acceptance, higher limits, and smoother compliance."
+      },
+      {
+        "title": "Access to premium investment opportunities",
+        "text": "Especially in real estate and private placements."
+      },
+      {
+        "title": "Simplified long-term planning",
+        "text": "Ideal for wealth structuring, succession planning, and relocation."
+      }
+    ]
+  },
+  {
+    "id": "investment-real-estate",
+    "kind": "investment",
+    "label": "Investment & Real Estate",
+    "number": "04",
+    "heading": "Invest with a Wider Perspective.",
+    "intro": [
+      "For many clients, the UAE is not only a place to do business but also a place to invest, diversify, and build long-term presence. Property and investment decisions should support liquidity, residency planning, and wider wealth strategy.",
+      "GlowBiz helps clients evaluate opportunities more strategically and place them within the bigger picture."
+    ],
+    "help": [
+      "Evaluating whether property fits your overall objectives",
+      "Assessing the connection between investment and residency planning",
+      "Looking at real estate as part of wider wealth positioning",
+      "Helping you ask better questions before committing capital",
+      "Aligning investment decisions with business and family plans"
+    ],
+    "faqs": [
+      {
+        "question": "Should I buy property mainly for residency?",
+        "answer": [
+          "Residency can be a benefit, but property should not be bought only for visa purposes. The asset itself still needs to make sense in terms of quality, pricing, holding period, and overall financial fit."
+        ]
+      },
+      {
+        "question": "Can property and business planning be linked?",
+        "answer": [
+          "Yes. For many clients, property, residency, and business presence are connected. Planning them together usually leads to better decisions than treating them as separate moves."
+        ]
+      },
+      {
+        "question": "Is real estate always the right first investment in the UAE?",
+        "answer": [
+          "No. It depends on your liquidity, objectives, and timeline. In some cases property makes sense early. In others, it should come after business and residency are properly structured."
+        ]
+      },
+      {
+        "question": "Should investment be held personally or through a structure?",
+        "answer": [
+          "That depends on the nature of the investment, family planning considerations, and long-term structuring objectives. This is exactly why the decision should be reviewed before purchase, not after."
+        ]
+      }
+    ],
+    "cta": "Considering property or investment decisions in the UAE?",
+    "button": "Book Consultation",
+    "solutions": [
+      {
+        "title": "Virtual & Physical Office Solutions",
+        "paragraphs": [
+          "For clients whose business and property requirements are interconnected, GlowBiz can coordinate flexi-desk, virtual office, serviced office and physical office arrangements based on licensing, banking and operational requirements."
+        ]
+      },
+      {
+        "title": "Real Estate Solutions",
+        "paragraphs": [
+          "Advisory support for UAE real estate opportunities, property acquisition, rental management, maintenance coordination, and strategic property-related requirements.",
+          "GlowBiz considers the property decision within the client's wider objectives — including investment purpose, financing, residency implications, liquidity and long-term UAE presence."
+        ]
+      },
+      {
+        "title": "Credit Facility & Mortgage Support",
+        "paragraphs": [
+          "Assistance in exploring suitable credit facilities, mortgage options, and banking solutions for personal, business, or commercial property requirements.",
+          "This allows financing considerations to be evaluated alongside the property decision rather than only after an investment has been selected."
+        ]
+      }
+    ],
+    "considerations": [
+      "Investment purpose",
+      "Capital commitment",
+      "Liquidity planning",
+      "Holding structure",
+      "Residency implications",
+      "Time horizon",
+      "Exit strategy"
+    ],
+    "returns": [
+      "Before committing capital, it is important to clarify what you are aiming to achieve:",
+      "• Rental yield (steady income)",
+      "• Capital appreciation (long-term growth)",
+      "• A balanced approach between both",
+      "GlowBiz helps you evaluate expected returns, liquidity needs, holding structure, and exit strategy so the investment aligns with your broader financial objectives."
+    ]
+  },
+  {
+    "id": "family-protection-succession",
+    "kind": "family",
+    "label": "Family Protection & Succession",
+    "number": "05",
+    "heading": "Protect What You Build. Plan What Comes Next.",
+    "intro": [
+      "Long-term planning is not complete without thinking about how family interests, wealth, obligations, and future responsibilities will be protected.",
+      "GlowBiz helps clients approach this area in a structured way across wills, succession planning, life insurance considerations, retirement planning, and child education planning."
+    ],
+    "help": [
+      "Identifying gaps in current family protection planning",
+      "Connecting wealth structuring with succession priorities",
+      "Helping clients think beyond immediate setup decisions",
+      "Supporting coordination with the relevant legal and financial professionals",
+      "Framing retirement and education planning within wider family objectives"
+    ],
+    "faqs": [
+      {
+        "question": "When should I start succession planning?",
+        "answer": [
+          "Earlier than most people think. Succession planning should begin once meaningful assets, business interests, or family responsibilities start building. Waiting too long usually reduces flexibility."
+        ]
+      },
+      {
+        "question": "Where does life insurance fit into long-term planning?",
+        "answer": [
+          "Life insurance can support family protection, liquidity planning, and continuity. It should be considered as part of the wider structure, not as a standalone purchase."
+        ]
+      },
+      {
+        "question": "Is retirement planning relevant if I am still actively building my business?",
+        "answer": [
+          "Yes. Retirement planning is not only about stopping work. It is about long-term financial direction, future residence choices, and how current decisions support later stability."
+        ]
+      },
+      {
+        "question": "Why include child education planning here?",
+        "answer": [
+          "Because education funding is often one of the largest long-term family goals. Planning it early makes the overall family strategy stronger and more realistic."
+        ]
+      }
+    ],
+    "cta": "Looking to strengthen long-term family and wealth planning?",
+    "button": "Schedule a Consultation",
+    "solutions": [
+      {
+        "title": "Wills",
+        "paragraphs": [
+          "Plan how UAE and cross-border assets should pass in line with your wishes. DIFC and ADGM wills offer non-Muslim expatriates a high degree of certainty and enforceability for UAE assets."
+        ]
+      },
+      {
+        "title": "Succession Planning",
+        "paragraphs": [
+          "Structure family and business continuity so that control, ownership, and family interests are protected over time. UAE foundations and holding companies can be powerful tools for multi-generational wealth transfer and governance."
+        ]
+      },
+      {
+        "title": "Life Insurance Planning",
+        "paragraphs": [
+          "Review how life insurance can support liquidity, family protection, and wider succession outcomes."
+        ]
+      },
+      {
+        "title": "Retirement Planning",
+        "paragraphs": [
+          "Think ahead about long-term residence, income planning, lifestyle goals, and how retirement in or around the UAE should be structured."
+        ]
+      },
+      {
+        "title": "Child Education Planning",
+        "paragraphs": [
+          "Plan early for future education funding in a realistic and disciplined way."
+        ]
+      }
+    ],
+    "support": [
+      {
+        "title": "Wills, Succession & Legacy Support",
+        "paragraphs": [
+          "Coordination support for wills, succession planning, offshore structures, and related legal documentation through trusted specialist partners.",
+          "GlowBiz helps bring these different elements together so that business interests, family requirements and asset succession can be considered as part of one broader legacy strategy."
+        ]
+      },
+      {
+        "title": "Investment & Insurance Coordination",
+        "paragraphs": [
+          "Support in identifying suitable investment, insurance, and wealth protection solutions through regulated and specialist partners, based on client requirements.",
+          "This allows areas such as life protection, investment planning, retirement and education funding to be considered alongside the client's broader family and succession objectives."
+        ]
+      }
+    ]
+  }
+]

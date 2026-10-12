@@ -1,0 +1,23 @@
+{
+  "tool": "Built-in image_gen",
+  "assets": [
+    {
+      "name": "routes",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium GlowBiz UAE consultancy website architectural artwork. Realistic high-end architectural photography/rendering, bright soft morning daylight, restrained white, ice blue, sky blue, corporate blue and navy. Sweeping white architecture, glass reflections, shallow reflective water, subtle landscaping. No people, flags, coins, cash, documents, logos, charts, gold, orange, beige or dark theme. No surreal architecture or excessive glow. Square composition, three tall translucent architectural glass forms standing on one sweeping white platform surrounded by shallow reflective water. Physically integrated glass installations, not website cards. Left form contains contemporary Dubai commercial architecture; tallest central form contains international business towers; right form contains an elegant waterfront holding-company environment. Curved angled tops, subtle blue edges, mature trees, distant secondary Dubai skyline. Exact discreet labels etched near upper portion of each form: left \"MAINLAND\" and below \"Direct Access\" / \"to the UAE Market\"; center \"FREE ZONE\" and below \"Efficient for\" / \"International Business\"; right \"OFFSHORE\" and below \"Strategic for\" / \"Asset Protection\". Keep all three installations and their bases visible, generous white sky and airy composition, no other text.",
+      "source": "C:\\Users\\rayaa\\.codex\\generated_images\\01a11f66-15b9-70c3-be8d-337d8d009aea\\exec-c4b42d44-f045-4c64-b923-b59de0d43276.png",
+      "output": "public/assets/structuring-routes.webp"
+    },
+    {
+      "name": "office",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium GlowBiz UAE consultancy website architectural artwork. Realistic high-end architectural photography/rendering, bright soft morning daylight, restrained white, ice blue, sky blue, corporate blue and navy. Sweeping white architecture, glass reflections, shallow reflective water, subtle landscaping. No people, flags, coins, cash, documents, logos, charts, gold, orange, beige or dark theme. No surreal architecture or excessive glow. Landscape 4:3 editorial photograph of an unoccupied premium serviced-office interior in Dubai. Architectural emphasis on curved white reception surfaces, glass partition walls, quiet blue upholstered seating, floor-to-ceiling glazing toward contemporary UAE business towers. Cool white and blue palette. No computers or documents in foreground. No text.",
+      "source": "C:\\Users\\rayaa\\.codex\\generated_images\\01a11f66-15b9-70c3-be8d-337d8d009aea\\exec-c6cb6069-d768-4865-9f81-889513e11c96.png",
+      "output": "public/assets/structuring-office.webp"
+    },
+    {
+      "name": "pathway",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium GlowBiz UAE consultancy website architectural artwork. Realistic high-end architectural photography/rendering, bright soft morning daylight, restrained white, ice blue, sky blue, corporate blue and navy. Sweeping white architecture, glass reflections, shallow reflective water, subtle landscaping. No people, flags, coins, cash, documents, logos, charts, gold, orange, beige or dark theme. No surreal architecture or excessive glow. Wide 16:9 architectural environment for website closing section. A sweeping sculptural white pedestrian pathway follows a shallow reflective blue water channel toward distant Dubai skyline on the right, Burj Khalifa secondary. Curved white canopy frames top right, subtle trees. Left half is pale ice-blue luminous open negative space for live website text. Clean credible buildable architecture, sense of clarity, direction, forward movement. No text.",
+      "source": "C:\\Users\\rayaa\\.codex\\generated_images\\01a11f66-15b9-70c3-be8d-337d8d009aea\\exec-0a84db7d-f356-4c1b-a309-c7cf13709e1a.png",
+      "output": "public/assets/structuring-pathway.webp"
+    }
+  ]
+}

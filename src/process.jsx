@@ -13,7 +13,7 @@ function reveal(reduced, delay = 0) {
   return { initial: reduced ? false : { opacity: 0, y: 14 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 }, transition: { duration: reduced ? 0 : 0.6, delay: reduced ? 0 : delay } };
 }
 
-function ProcessWaves() {
+export function ProcessWaves() {
   return <svg className="process-waves" viewBox="0 0 2100 748" preserveAspectRatio="none" aria-hidden="true">
     <defs>
       <linearGradient id="process-ice" x2="1" y2="1"><stop stopColor="#f6faff"/><stop offset=".55" stopColor="#e2f0ff"/><stop offset="1" stopColor="#c6e2ff"/></linearGradient>

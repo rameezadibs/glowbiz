@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Outfit:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Outfit:wght@600;700;800;900&display=swap');
 @import 'tailwindcss';
 
 @theme { --color-navy: #142f55; --color-royal: #124a9d; --font-sans: 'DM Sans', sans-serif; --font-display: 'Outfit', sans-serif; }
@@ -81,7 +81,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: rgba(18, 74, 157, 0.06);
 }
 .nav-link.active { color: white; background: #124a9d; font-weight: 600; box-shadow: 0 2px 10px rgba(18, 74, 157, 0.25); }
-.button { display: inline-flex; justify-content: center; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: 8px; font-size: 15px; font-weight: 600; border: 1px solid transparent; transition: background .25s, box-shadow .25s, transform .25s, border-color .25s; white-space: nowrap; }
+.button { display: inline-flex; justify-content: center; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: 8px; font-size: 15px; font-weight: 600; border: 1px solid transparent; transition: background .25s, box-shadow .25s, transform .25s, border-color .25s; white-space: nowrap; text-decoration: none; }
 .button:hover { transform: translateY(-1px); }
 .button-primary { background: #124a9d; color: white; box-shadow: 0 3px 12px #194d9318; }
 .button-primary:hover { background: #0f3d82; box-shadow: 0 6px 18px #194d932b; }
@@ -255,7 +255,7 @@ h1 > span { display: block; white-space: nowrap; }
   font-size: 18.5px;
   line-height: 1.6;
   color: #c4dafb;
-  max-width: 640px;
+  max-width: 720px;
   margin-bottom: 36px;
 }
 .cta-actions .button-primary {

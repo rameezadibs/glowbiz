@@ -1,0 +1,5 @@
+{
+  "tool": "Built-in image_gen",
+  "output": "public/assets/expertise-business.webp",
+  "prompt": "Edit this exact image for use as a website architectural background. Remove ALL typography, numbers, buttons, icons, navigation list, paragraphs, labels, headings, decorative text rules and UI from the image. Fill their former areas with the same seamless pale ice-blue white background. Preserve the architectural artwork EXACTLY: corporate glass building on right, Dubai skyline and Burj Khalifa, sweeping white canopy across top, thin blue glass edge, reflective water and curved white layers below, landscaping and framing. Preserve original composition and positions. Do not redesign the building or change the camera. No text anywhere. The entire left 55 percent should be clean pale empty background with the architectural curves still framing top and bottom."
+}
