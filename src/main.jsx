@@ -6,6 +6,7 @@ import { ArrowRight, ChevronRight, Menu, X, Download, MapPin, Mail, Phone, Shiel
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { ExpertiseSection } from './expertise';
 import BusinessStructuringPage from './business-structuring';
+import WhyGlowBizPage from './why-glowbiz';
 import { ServicesSection, ServicePage, ServicesHero, ConsultationPage } from './services';
 import ProcessSection from './process';
 import './styles.css';
@@ -56,7 +57,7 @@ function Header({ onOpen }) {
     setMenuOpen(false);
     if (page === 'Home') route('/');
     else if (page === 'Contact') route('/contact');
-    else if (page === 'Why GlowBiz') onOpen('Why GlowBiz');
+    else if (page === 'Why GlowBiz') route('/why-glowbiz');
     else if (page === 'Services') route('/services');
     else onOpen(page);
   };
@@ -76,6 +77,8 @@ function Header({ onOpen }) {
                 ? location.pathname === '/'
                 : page === 'Services'
                 ? location.pathname.startsWith('/services')
+                : page === 'Why GlowBiz'
+                ? location.pathname === '/why-glowbiz'
                 : page === 'Contact'
                 ? location.pathname === '/contact'
                 : false;
@@ -141,6 +144,8 @@ function Header({ onOpen }) {
                   ? location.pathname === '/'
                   : page === 'Services'
                   ? location.pathname.startsWith('/services')
+                  : page === 'Why GlowBiz'
+                  ? location.pathname === '/why-glowbiz'
                   : page === 'Contact'
                   ? location.pathname === '/contact'
                   : false;
@@ -211,6 +216,15 @@ const servicesCta = {
   buttonText: 'Book a Consultation',
   buttonTo: '/contact',
   image: '/services/CTA.png',
+};
+
+const whyGlowbizCta = {
+  eyebrow: 'STRATEGIC UAE BUSINESS & WEALTH ADVISORY',
+  title: 'Partner with GlowBiz for Confident UAE Growth',
+  description: 'Navigate UAE corporate setup, banking readiness, Golden Visa residency, and asset protection with an experienced strategic advisor dedicated to international entrepreneurs and global investors.',
+  buttonText: 'Schedule a Consultation',
+  buttonTo: '/contact',
+  image: '/why-glowbiz/CTA.png',
 };
 
 function CtaSection({
@@ -302,7 +316,7 @@ function Footer({ onOpen }) {
             <ul className="footer-links space-y-2.5 text-sm text-slate-600">
               <li><Link to="/" className="hover:text-royal transition">Home</Link></li>
               <li><Link to="/services" className="hover:text-royal transition">Services</Link></li>
-              <li><button onClick={() => onOpen('Why GlowBiz')} className="hover:text-royal transition text-left">Why GlowBiz</button></li>
+              <li><Link to="/why-glowbiz" className="hover:text-royal transition text-left">Why GlowBiz</Link></li>
               <li><button onClick={() => onOpen('Insights')} className="hover:text-royal transition text-left">Insights</button></li>
               <li><Link to="/contact" className="hover:text-royal transition">Contact</Link></li>
             </ul>
@@ -353,8 +367,26 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const onOpen = target => target === 'Services' ? navigate('/services') : setPage(target);
-  useEffect(() => { window.scrollTo(0, 0); setPage(null); document.title = detailPages.some(data => location.pathname === `/services/${data.id}`) ? `${detailPages.find(data => location.pathname === `/services/${data.id}`).label} \u2014 GlowBiz Solutions` : location.pathname === '/services/business-structuring' ? 'Business Structuring — GlowBiz Solutions' : location.pathname.startsWith('/services') ? 'Our Services — GlowBiz Solutions' : 'GlowBiz Solutions — Your Growth Partner in the UAE'; }, [location.pathname]);
-  return <MotionConfig reducedMotion="user"><a className="skip-link" href="#main-content">Skip to content</a><Header onOpen={onOpen} /><Routes><Route path="/" element={<main id="main-content"><Hero onOpen={onOpen} /><ServicesSection /><ProcessSection /><CtaSection onOpen={onOpen} /></main>} /><Route path="/services" element={<main id="main-content"><ServicesHero /><ExpertiseSection /><CtaSection onOpen={onOpen} {...servicesCta} /></main>} /><Route path="/contact" element={<ConsultationPage onConsultation={() => setPage('Consultation')} />} /><Route path="/services/business-structuring" element={<BusinessStructuringPage />} />{detailPages.map(data => <Route key={data.id} path={`/services/${data.id}`} element={<ServiceDetailPage data={data} />} />)}<Route path="/services/banking-financial-structuring" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/services/banking" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/banking" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/services/golden-visa" element={<ServiceDetailPage data={detailPages[1]} />} /><Route path="/golden-visa-residency" element={<ServiceDetailPage data={detailPages[1]} />} /><Route path="/services/investment" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/services/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/investment-real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/investment" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/services/family-protection-succession-advisory" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/family" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/:serviceId" element={<><ServicePage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></>} /><Route path="*" element={<main id="main-content" className="service-detail"><h1>Page not found</h1><Link to="/">Return home</Link></main>} /></Routes><Footer onOpen={onOpen} /><DetailDialog page={page} onClose={() => setPage(null)} onOpen={onOpen} /></MotionConfig>;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setPage(null);
+    if (location.pathname === '/why-glowbiz') {
+      document.title = 'Why GlowBiz | Strategic UAE Business & Wealth Advisory';
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', 'Discover why entrepreneurs, investors and international families work with GlowBiz for strategic UAE business, banking, residency, investment and long-term planning guidance.');
+      }
+    } else if (detailPages.some(data => location.pathname === `/services/${data.id}`)) {
+      document.title = `${detailPages.find(data => location.pathname === `/services/${data.id}`).label} \u2014 GlowBiz Solutions`;
+    } else if (location.pathname === '/services/business-structuring') {
+      document.title = 'Business Structuring — GlowBiz Solutions';
+    } else if (location.pathname.startsWith('/services')) {
+      document.title = 'Our Services — GlowBiz Solutions';
+    } else {
+      document.title = 'GlowBiz Solutions — Your Growth Partner in the UAE';
+    }
+  }, [location.pathname]);
+  return <MotionConfig reducedMotion="user"><a className="skip-link" href="#main-content">Skip to content</a><Header onOpen={onOpen} /><Routes><Route path="/" element={<main id="main-content"><Hero onOpen={onOpen} /><ServicesSection /><ProcessSection /><CtaSection onOpen={onOpen} /></main>} /><Route path="/services" element={<main id="main-content"><ServicesHero /><ExpertiseSection /><CtaSection onOpen={onOpen} {...servicesCta} /></main>} /><Route path="/why-glowbiz" element={<main id="main-content"><WhyGlowBizPage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...whyGlowbizCta} /></main>} /><Route path="/contact" element={<ConsultationPage onConsultation={() => setPage('Consultation')} />} /><Route path="/services/business-structuring" element={<BusinessStructuringPage />} />{detailPages.map(data => <Route key={data.id} path={`/services/${data.id}`} element={<ServiceDetailPage data={data} />} />)}<Route path="/services/banking-financial-structuring" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/services/banking" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/banking" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/services/golden-visa" element={<ServiceDetailPage data={detailPages[1]} />} /><Route path="/golden-visa-residency" element={<ServiceDetailPage data={detailPages[1]} />} /><Route path="/services/investment" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/services/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/investment-real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/investment" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/services/family-protection-succession-advisory" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/family" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/:serviceId" element={<><ServicePage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></>} /><Route path="*" element={<main id="main-content" className="service-detail"><h1>Page not found</h1><Link to="/">Return home</Link></main>} /></Routes><Footer onOpen={onOpen} /><DetailDialog page={page} onClose={() => setPage(null)} onOpen={onOpen} /></MotionConfig>;
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><BrowserRouter><App /></BrowserRouter></React.StrictMode>);

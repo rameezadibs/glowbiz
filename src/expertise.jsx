@@ -19,7 +19,6 @@ export function ExpertiseSection() {
   return <section id="services" className="expertise-section" aria-labelledby="services-heading">
     <div className="expertise-intro">
       <p className="strategy-eyebrow"><span aria-hidden="true" />OUR EXPERTISE</p>
-      <h2 id="services-heading">Five Areas. <span>One Connected Strategy.</span></h2>
       <p className="expertise-lead">Your business structure, banking, residency, investments and long-term family planning should not be treated as separate decisions. GlowBiz brings these areas together, helping you build a more coordinated approach to your UAE presence.</p>
     </div>
     <div className="expertise-layout">
@@ -32,9 +31,8 @@ export function ExpertiseSection() {
         <div key={service.id} className="expertise-copy">
           <p className="expertise-label">{service.label}</p>
           <h3>{service.heading[0]}<span>{service.heading[1]}</span></h3>
-          <div className="expertise-description">{service.paragraphs.map(text => <p key={text}>{text}</p>)}</div>
-          <Link className="expertise-cta expertise-desktop-cta" to={`/services/${service.id}`}>Learn More<ArrowRight size={20} aria-hidden="true" /></Link>
           <div className="expertise-areas"><p className="expertise-label">KEY AREAS INCLUDE</p><ul>{service.areas.map((area, index) => { const Icon = areaIcons[index]; return <li key={area}><span className="expertise-icon"><Icon size={24} strokeWidth={1.4} aria-hidden="true" /></span><span>{area}</span></li>; })}</ul></div>
+          <Link className="expertise-cta expertise-desktop-cta" to={`/services/${service.id}`}>Learn More<ArrowRight size={20} aria-hidden="true" /></Link>
         </div>
         <div className="expertise-visual" aria-label="Service architecture">
           {expertiseServices.map((item, index) => <svg key={item.id} className={`expertise-artwork ${active === index ? 'is-active' : ''}`} viewBox="0 0 1672 941" preserveAspectRatio="none" role="img" aria-label={item.alt} aria-hidden={active !== index}>

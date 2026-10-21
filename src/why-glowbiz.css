@@ -1,0 +1,1151 @@
+/* =====================================================================
+   WHY GLOWBIZ — PREMIUM EDITORIAL DESIGN SYSTEM
+   ===================================================================== */
+
+.why-glowbiz-page {
+  --wg-navy: #142f55;
+  --wg-blue: #124a9d;
+  --wg-light-blue: #0f3d82;
+  --wg-ice: #f5f8fc;
+  --wg-ice-alt: #eaf4ff;
+  --wg-sky-border: #b0caed;
+  --wg-sky-soft: #eaf4ff;
+  --wg-muted: #536b85;
+  --wg-muted-dark: #536b85;
+  --wg-serif: 'Outfit', sans-serif;
+  --wg-sans: 'DM Sans', sans-serif;
+  --wg-display: 'Outfit', sans-serif;
+
+  background-color: #ffffff;
+  color: var(--wg-navy);
+  font-family: var(--wg-sans);
+  overflow-x: clip;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure nav links are clearly visible on Why GlowBiz page */
+body:has(.why-glowbiz-page) .site-header:not(.scrolled) .nav-link:not(.active) {
+  color: #142f55;
+}
+
+body:has(.why-glowbiz-page) .site-header:not(.scrolled) .brand-logo-link {
+  filter: drop-shadow(0 2px 8px rgba(20, 47, 85, 0.08));
+}
+
+/* ---------------------------------------------------------------------
+   UTILITY & SHELL
+   --------------------------------------------------------------------- */
+.wg-shell {
+  width: min(1360px, 88%);
+  margin-inline: auto;
+  position: relative;
+}
+
+.wg-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--wg-sans);
+  font-size: clamp(11px, 0.84vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: #3b5b80;
+  margin: 0 0 20px;
+}
+
+.wg-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 45px;
+  height: 1px;
+  background: #85a8d2;
+  flex-shrink: 0;
+}
+
+.wg-button-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.wg-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 0 32px;
+  border-radius: 8px;
+  background: var(--wg-blue);
+  color: #ffffff;
+  font-family: var(--wg-sans);
+  font-size: 15.5px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 24px -6px rgba(18, 74, 157, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.wg-btn-primary:hover {
+  background: #0d3b7e;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px rgba(18, 74, 157, 0.45);
+}
+
+.wg-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 28px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--wg-navy);
+  font-family: var(--wg-sans);
+  font-size: 15.5px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--wg-sky-border);
+  box-shadow: 0 3px 12px rgba(20, 47, 85, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.wg-btn-secondary:hover {
+  background: #ffffff;
+  border-color: #92bce3;
+  color: var(--wg-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(20, 47, 85, 0.08);
+}
+
+/* ---------------------------------------------------------------------
+   SECTION 01 — HERO
+   --------------------------------------------------------------------- */
+.wg-hero {
+  position: relative;
+  padding-top: 140px;
+  padding-bottom: 90px;
+  background: radial-gradient(circle at 85% 20%, rgba(207, 225, 243, 0.45), transparent 60%),
+              radial-gradient(circle at 15% 80%, rgba(229, 240, 250, 0.6), transparent 50%),
+              #ffffff;
+  overflow: hidden;
+  border-bottom: 1px solid var(--wg-sky-soft);
+}
+
+.wg-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.wg-hero-content {
+  max-width: 650px;
+  z-index: 2;
+}
+
+.wg-hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(48px, 5vw, 76px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: 0 0 28px;
+}
+
+.wg-hero-title span {
+  display: block;
+}
+
+.wg-title-navy {
+  color: var(--wg-navy);
+}
+
+.wg-title-blue {
+  color: var(--wg-blue);
+  font-style: normal;
+  font-weight: 800;
+}
+
+.wg-hero-body {
+  font-size: clamp(17px, 1.2vw, 20.5px);
+  line-height: 1.7;
+  color: var(--wg-muted-dark);
+  font-weight: 400;
+  margin: 0;
+  max-width: 580px;
+}
+
+.wg-hero-visual-frame {
+  position: relative;
+  z-index: 1;
+}
+
+.wg-hero-img-wrap {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #f0f6fc;
+  box-shadow: 0 25px 60px -15px rgba(20, 47, 85, 0.12),
+              0 0 0 1px rgba(207, 225, 243, 0.8);
+  aspect-ratio: 16 / 10;
+}
+
+.wg-hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wg-hero-img-wrap:hover img {
+  transform: scale(1.025);
+}
+
+/* Subtle architectural overlay badge */
+.wg-hero-caption-card {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 14px 20px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(20, 47, 85, 0.08);
+}
+
+.wg-hero-caption-label {
+  font-family: var(--wg-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #1a4d85;
+  text-transform: uppercase;
+}
+
+.wg-hero-caption-tag {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #4b6683;
+}
+
+/* ---------------------------------------------------------------------
+   SECTION 02 — EXPERIENCE / CREDIBILITY (20+)
+   --------------------------------------------------------------------- */
+.wg-experience {
+  position: relative;
+  padding: 55px 0 40px;
+  background: linear-gradient(180deg, #ffffff 0%, var(--wg-ice) 100%);
+  border-bottom: 1px solid var(--wg-sky-border);
+  overflow: hidden;
+}
+
+.wg-exp-bg-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+.wg-experience-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  align-items: center;
+  gap: 70px;
+  position: relative;
+  z-index: 2;
+}
+
+.wg-exp-number-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.wg-exp-giant-number {
+  font-family: var(--wg-display);
+  font-size: clamp(110px, 13vw, 200px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #142f55 0%, #124a9d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+}
+
+.wg-exp-label {
+  font-family: var(--wg-sans);
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #124a9d;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.wg-exp-label::after {
+  content: '';
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: #b0caed;
+}
+
+.wg-exp-content-col {
+  padding-left: 30px;
+  border-left: 1px solid var(--wg-sky-border);
+}
+
+.wg-exp-lead-text {
+  font-family: var(--wg-display);
+  font-size: clamp(26px, 2.4vw, 36px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--wg-navy);
+  margin: 0 0 20px;
+}
+
+.wg-exp-body {
+  font-family: var(--wg-sans);
+  font-size: clamp(16px, 1.1vw, 18px);
+  line-height: 1.65;
+  color: var(--wg-muted-dark);
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   SECTION 03 — THE GLOWBIZ DIFFERENCE (FIVE PRINCIPLES)
+   --------------------------------------------------------------------- */
+.wg-difference {
+  position: relative;
+  padding: 35px 0 35px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.wg-diff-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 40px;
+}
+
+.wg-diff-header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--wg-navy);
+  margin: 0;
+}
+
+/* Vertical Journey Spine */
+.wg-journey-timeline {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* Central vertical connecting blue line */
+.wg-journey-spine {
+  position: absolute;
+  top: 40px;
+  bottom: 25px;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(180deg, #cde1f4 0%, #124a9d 50%, #cde1f4 100%);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.wg-journey-step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+  position: relative;
+  margin-bottom: 100px;
+  z-index: 2;
+}
+
+.wg-journey-step:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternating layout: 1 right, 1 left */
+.wg-journey-step.step-odd .wg-step-text {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: left;
+  padding-right: 40px;
+}
+
+.wg-journey-step.step-odd .wg-step-text {
+  max-width: 480px;
+  margin-left: auto;
+}
+
+.wg-journey-step.step-odd .wg-step-visual {
+  grid-column: 2;
+  grid-row: 1;
+  padding-left: 40px;
+}
+
+.wg-journey-step.step-even .wg-step-visual {
+  grid-column: 1;
+  grid-row: 1;
+  padding-right: 40px;
+}
+
+.wg-journey-step.step-even .wg-step-text {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: left;
+  padding-left: 40px;
+  max-width: 480px;
+  margin-right: auto;
+}
+
+/* Milestone pin on the spine */
+.wg-step-milestone-marker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--wg-blue);
+  box-shadow: 0 0 0 6px #eaf4ff, 0 8px 20px rgba(18, 74, 157, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--wg-blue);
+}
+
+.wg-step-badge {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  color: #124a9d;
+  background: #eaf4ff;
+  border: 1px solid #b0caed;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.wg-step-text h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 2.3vw, 36px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  color: var(--wg-navy);
+  margin: 0 0 16px;
+}
+
+.wg-step-text p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(15.5px, 1.05vw, 17.5px);
+  line-height: 1.65;
+  color: var(--wg-muted-dark);
+  margin: 0;
+  max-width: 480px;
+}
+
+.wg-step-visual {
+  position: relative;
+}
+
+.wg-step-img-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #f1f6fc;
+  border: 1px solid var(--wg-sky-border);
+  box-shadow: 0 20px 45px -10px rgba(20, 47, 85, 0.1);
+  aspect-ratio: 4 / 3;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wg-step-img-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 55px -10px rgba(18, 74, 157, 0.18);
+}
+
+.wg-step-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wg-step-img-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Specific framing for stage 05 sculpture */
+.wg-step-img-card.card-bespoke img {
+  transform: scale(1.12);
+  transform-origin: 65% 38%;
+}
+.wg-step-img-card.card-bespoke:hover img {
+  transform: scale(1.16);
+}
+
+/* ---------------------------------------------------------------------
+   SECTION 04 — CONNECTED THINKING
+   --------------------------------------------------------------------- */
+.wg-connected {
+  position: relative;
+  padding: 30px 0 35px;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f3f8fd 100%);
+  border-top: 1px solid var(--wg-sky-border);
+  border-bottom: 1px solid var(--wg-sky-border);
+  overflow: hidden;
+}
+
+.wg-connected-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 50px;
+}
+
+.wg-connected-header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--wg-navy);
+  margin: 0;
+}
+
+/* Orbital Strategic System Visualization */
+.wg-orbital-system {
+  position: relative;
+  max-width: 980px;
+  height: 520px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wg-orbital-svg-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Core Center Node */
+.wg-orbital-center {
+  position: relative;
+  z-index: 10;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #142f55 0%, #124a9d 100%);
+  border: 4px solid #ffffff;
+  box-shadow: 0 18px 45px rgba(18, 74, 157, 0.35), 0 0 0 1px rgba(207, 225, 243, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  padding: 16px;
+  transition: transform 0.4s ease;
+}
+
+.wg-orbital-center:hover {
+  transform: scale(1.04);
+}
+
+.wg-orbital-center-eyebrow {
+  font-family: var(--wg-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #b0caed;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.wg-orbital-center-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+/* Satellite Connected Nodes */
+.wg-satellite-node {
+  position: absolute;
+  z-index: 12;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--wg-sky-border);
+  box-shadow: 0 10px 28px -5px rgba(20, 47, 85, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wg-satellite-node:hover,
+.wg-satellite-node.is-active {
+  background: #ffffff;
+  border-color: var(--wg-blue);
+  box-shadow: 0 14px 34px -5px rgba(18, 74, 157, 0.22);
+  transform: scale(1.05);
+}
+
+.wg-node-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #9abfdc;
+  transition: background 0.3s ease;
+}
+
+.wg-satellite-node:hover .wg-node-indicator,
+.wg-satellite-node.is-active .wg-node-indicator {
+  background: var(--wg-blue);
+  box-shadow: 0 0 10px rgba(18, 74, 157, 0.7);
+}
+
+.wg-node-label {
+  font-family: var(--wg-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wg-navy);
+}
+
+/* Coordinate positioning of the 5 orbital nodes */
+.node-pos-1 { top: 22px; left: 50%; transform: translateX(-50%); }
+.node-pos-2 { top: 120px; right: 8%; }
+.node-pos-3 { bottom: 65px; right: 14%; }
+.node-pos-4 { bottom: 65px; left: 14%; }
+.node-pos-5 { top: 120px; left: 8%; }
+
+.node-pos-1:hover, .node-pos-1.is-active { transform: translateX(-50%) scale(1.06); }
+
+/* Context statement below orbital */
+.wg-orbital-interactive-summary {
+  max-width: 720px;
+  margin: 36px auto 0;
+  text-align: center;
+  padding: 18px 26px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--wg-sky-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(20, 47, 85, 0.05);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--wg-muted-dark);
+}
+
+.wg-orbital-interactive-summary strong {
+  color: var(--wg-navy);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------
+   SECTION 05 — WHO THIS APPROACH IS FOR
+   --------------------------------------------------------------------- */
+.wg-clients {
+  position: relative;
+  padding: 30px 0 110px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.wg-clients-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 50px;
+}
+
+.wg-clients-header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--wg-navy);
+  margin: 0;
+}
+
+.wg-clients-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.wg-client-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #f5f8fc;
+  border: 1px solid var(--wg-sky-border);
+  box-shadow: 0 15px 35px -8px rgba(20, 47, 85, 0.08);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.wg-client-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 45px -8px rgba(18, 74, 157, 0.16);
+}
+
+.wg-client-img-wrap {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: #e2edf8;
+}
+
+.wg-client-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.wg-client-card:hover .wg-client-img-wrap img {
+  transform: scale(1.04);
+}
+
+.wg-client-body {
+  padding: 30px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.wg-client-eyebrow {
+  font-family: var(--wg-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  color: #124a9d;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.wg-client-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--wg-navy);
+  margin: 0 0 12px;
+}
+
+.wg-client-desc {
+  font-family: var(--wg-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--wg-muted);
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   SECTION 06 — FINAL CTA
+   --------------------------------------------------------------------- */
+.wg-cta {
+  position: relative;
+  padding: 120px 0 130px;
+  background: linear-gradient(180deg, #f3f8fd 0%, #e8f2fc 100%);
+  border-top: 1px solid var(--wg-sky-border);
+  overflow: hidden;
+}
+
+/* Atmospheric architectural background styling */
+.wg-cta-bg-arch {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.12;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 75% 30%, #124a9d 1px, transparent 1px),
+                    radial-gradient(circle at 25% 70%, #124a9d 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.wg-cta-inner-card {
+  position: relative;
+  z-index: 2;
+  max-width: 1120px;
+  margin: 0 auto;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 25px 60px -15px rgba(20, 47, 85, 0.12),
+              0 0 0 1px rgba(207, 225, 243, 0.8);
+  padding: 80px 70px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.wg-cta-content {
+  max-width: 620px;
+}
+
+.wg-cta-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(38px, 4.1vw, 58px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--wg-navy);
+  margin: 0 0 24px;
+}
+
+.wg-cta-text {
+  font-family: var(--wg-sans);
+  font-size: clamp(16px, 1.15vw, 18.5px);
+  line-height: 1.65;
+  color: var(--wg-muted-dark);
+  margin: 0 0 34px;
+}
+
+.wg-cta-visual-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Distinctive forward architectural portal visual metaphor */
+.wg-cta-arch-portal {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50% 50% 16px 16px;
+  background: linear-gradient(180deg, #d8ebfb 0%, #ffffff 75%);
+  border: 1px solid var(--wg-sky-border);
+  box-shadow: 0 20px 45px -10px rgba(18, 74, 157, 0.15);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wg-cta-portal-rings {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.wg-cta-portal-badge {
+  position: relative;
+  z-index: 4;
+  padding: 18px 24px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 25px rgba(20, 47, 85, 0.08);
+  text-align: center;
+}
+
+.wg-cta-portal-badge span {
+  display: block;
+}
+
+.wg-portal-kicker {
+  font-family: var(--wg-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #124a9d;
+  margin-bottom: 4px;
+}
+
+.wg-portal-main {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--wg-navy);
+}
+
+/* ---------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS
+   --------------------------------------------------------------------- */
+
+/* Tablet (max-width: 1080px) */
+@media (max-width: 1080px) {
+  .wg-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+  
+  .wg-hero-content {
+    max-width: 100%;
+  }
+
+  .wg-experience-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .wg-exp-content-col {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--wg-sky-border);
+    padding-top: 35px;
+  }
+
+  .wg-journey-step {
+    gap: 50px;
+  }
+
+  .wg-clients-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .wg-cta-inner-card {
+    grid-template-columns: 1fr;
+    padding: 60px 40px;
+    gap: 45px;
+  }
+}
+
+/* Mobile & Small Tablet (max-width: 820px) */
+@media (max-width: 820px) {
+  .wg-hero {
+    padding-top: 110px;
+    padding-bottom: 60px;
+  }
+
+  .wg-experience {
+    padding: 35px 0 25px;
+  }
+
+  .wg-difference {
+    padding: 25px 0 30px;
+  }
+
+  .wg-diff-header {
+    margin-bottom: 25px;
+  }
+
+  /* Five principles: convert journey into clean vertical timeline */
+  .wg-journey-spine {
+    left: 20px;
+    transform: none;
+  }
+
+  .wg-journey-step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 55px;
+    margin-bottom: 65px;
+    gap: 24px;
+  }
+
+  .wg-journey-step.step-odd .wg-step-text,
+  .wg-journey-step.step-even .wg-step-text {
+    text-align: left;
+    padding: 0;
+    width: 100%;
+  }
+
+  .wg-journey-step.step-odd .wg-step-text p,
+  .wg-journey-step.step-even .wg-step-text p {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .wg-journey-step.step-odd .wg-step-visual,
+  .wg-journey-step.step-even .wg-step-visual {
+    padding: 0;
+    width: 100%;
+    order: 2;
+  }
+
+  .wg-journey-step .wg-step-text {
+    order: 1;
+  }
+
+  .wg-step-milestone-marker {
+    left: 20px;
+    top: 24px;
+    width: 40px;
+    height: 40px;
+    font-size: 11.5px;
+  }
+
+  /* Connected Thinking: convert orbital to vertical flow */
+  .wg-connected {
+    padding: 28px 0 35px;
+  }
+
+  .wg-orbital-system {
+    height: auto;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+  .wg-orbital-svg-bg {
+    display: none;
+  }
+
+  .wg-orbital-center {
+    position: static;
+    margin: 0 auto 20px;
+    width: 160px;
+    height: 160px;
+  }
+
+  .wg-satellite-node {
+    position: static;
+    transform: none !important;
+    width: 100%;
+    max-width: 320px;
+    justify-content: flex-start;
+    padding: 14px 20px;
+  }
+
+  .wg-clients {
+    padding: 30px 0 70px;
+  }
+
+  .wg-cta {
+    padding: 80px 0 90px;
+  }
+
+  .wg-cta-inner-card {
+    padding: 40px 24px;
+  }
+
+  .wg-button-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .wg-btn-primary,
+  .wg-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+/* Approved waterfront hero. Scoped to preserve all following sections. */
+.wg-hero.wg-waterfront {
+  min-height: clamp(760px, 55vw, 900px);
+  padding: 150px 8% 130px;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  background: #f1f7fd;
+  border: 0;
+}
+.wg-waterfront-art { position: absolute; inset: 0; z-index: -2; }
+.wg-waterfront-art img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.wg-waterfront::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(90deg, rgba(249,252,255,.94), rgba(245,250,255,.83) 32%, rgba(245,250,255,.4) 47%, transparent 64%);
+}
+.wg-waterfront::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 70px;
+  background: linear-gradient(transparent, white); pointer-events: none;
+}
+.wg-waterfront-content { width: 52%; max-width: 730px; }
+.wg-waterfront .wg-eyebrow { font-family: var(--wg-sans); font-size: clamp(11px, 0.84vw, 15px); font-weight: 700; letter-spacing: 0.17em; text-transform: uppercase; color: #3b5b80; gap: 20px; margin-bottom: 28px; }
+.wg-waterfront .wg-eyebrow::before { width: 58px; background: #85a8d2; }
+.wg-waterfront .wg-hero-title { font-family: 'Outfit', sans-serif; font-size: clamp(52px, 5.2vw, 80px); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 26px; }
+.wg-waterfront .wg-title-navy { color: #142f55; }
+.wg-waterfront .wg-title-blue { color: #124a9d; font-style: normal; font-weight: 800; white-space: nowrap; }
+.wg-waterfront .wg-hero-body { max-width: 595px; color: #536b85; font-size: 18px; line-height: 1.6; font-family: 'DM Sans', sans-serif; }
+.wg-waterfront .wg-button-group { gap: 16px; margin-top: 32px; flex-wrap: nowrap; }
+.wg-waterfront .wg-btn-primary, .wg-waterfront .wg-btn-secondary { min-height: 56px; padding: 0 28px; border-radius: 8px; font-size: 15.5px; font-weight: 600; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: all .25s ease; background: #124a9d; color: #ffffff; border: 1px solid #124a9d; box-shadow: 0 8px 24px -6px rgba(18, 74, 157, 0.35); }
+.wg-waterfront .wg-btn-primary:hover, .wg-waterfront .wg-btn-secondary:hover { background: #0f3d82; border-color: #0f3d82; color: #ffffff; transform: translateY(-2px); box-shadow: 0 12px 28px -6px rgba(18, 74, 157, 0.45); }
+.wg-waterfront .wg-button-group svg { transition: transform .25s; }
+.wg-waterfront .wg-button-group a:hover svg { transform: translateX(3px); }
+.wg-waterfront .wg-button-group a:focus-visible { outline: 3px solid #142f55; outline-offset: 4px; }
+@media (min-width: 768px) and (max-width: 1100px) {
+  .wg-hero.wg-waterfront { padding-inline: 6%; }
+  .wg-waterfront-content { width: 58%; }
+  .wg-waterfront .wg-hero-title { font-size: clamp(48px, 5.7vw, 62px); }
+  .wg-waterfront .wg-hero-body { font-size: 17px; }
+  .wg-waterfront .wg-btn-primary, .wg-waterfront .wg-btn-secondary { padding-inline: 16px; font-size: 13px; }
+  .wg-waterfront::before { background: linear-gradient(90deg, #f6faff 5%, rgba(246,250,255,.9) 40%, transparent 80%); }
+}
+@media (max-width: 767px) {
+  .wg-hero.wg-waterfront { display: flex; flex-direction: column; min-height: 0; padding: 125px 0 0; background: #f3f8fe; }
+  .wg-waterfront-content { width: 100%; max-width: none; padding: 0 7%; }
+  .wg-waterfront .wg-eyebrow { font-size: 11px; margin-bottom: 24px; }
+  .wg-waterfront .wg-hero-title { font-size: clamp(36px, 8.6vw, 64px); margin-bottom: 24px; }
+  .wg-waterfront .wg-hero-body { font-size: 16px; line-height: 1.65; }
+  .wg-waterfront .wg-button-group { flex-direction: column; gap: 14px; margin-top: 28px; }
+  .wg-waterfront .wg-button-group a { width: 100%; font-size: 15px; }
+  .wg-waterfront-art { position: relative; inset: auto; order: 2; width: 100%; height: clamp(330px, 90vw, 520px); margin-top: 24px; z-index: -1; }
+  .wg-waterfront-art img { object-position: 85% center; }
+  .wg-waterfront-art::before { content: ''; position: absolute; inset: 0 0 auto; height: 65px; background: linear-gradient(#f3f8fe, transparent); }
+  .wg-waterfront::before { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wg-waterfront .wg-button-group a, .wg-waterfront .wg-button-group svg { transition: none; }
+}

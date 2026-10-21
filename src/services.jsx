@@ -97,7 +97,6 @@ export function ServicesHero() {
     <div className="strategy-art"><img src="/assets/connected-services-reference.png" width="1981" height="793" fetchPriority="high" alt="Five connected frosted-glass architectural panels: Business Structuring, Banking, Residency, Investment & Real Estate, and Family Protection, on a reflective white platform beside the Dubai skyline." /></div>
     <div className="strategy-content">
       <p className="strategy-eyebrow"><span aria-hidden="true" />STRATEGIC UAE ADVISORY</p>
-      <h1 id="strategy-heading">One UAE Strategy.<span>Every Decision Connected.</span></h1>
       <div className="strategy-copy"><p>GlowBiz provides strategic advisory designed to help international clients navigate the UAE business and financial landscape with clarity and confidence.</p><p>Rather than focusing only on administrative processes, we help you structure your business, banking, residency and investment decisions in a coordinated way from the beginning.</p></div>
       <div className="strategy-actions"><a className="strategy-primary" href="#services" onClick={event => { event.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth' }); }}>Explore Our Services<ArrowDown aria-hidden="true" /></a><Link className="strategy-primary" to="/contact">Book a Consultation<ArrowRight aria-hidden="true" /></Link></div>
     </div>
