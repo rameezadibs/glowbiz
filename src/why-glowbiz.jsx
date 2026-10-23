@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronRight, Check } from 'lucide-react';
+import { ProcessWaves } from './process';
 import './why-glowbiz.css';
 
 const fivePrinciples = [
@@ -234,7 +235,8 @@ export default function WhyGlowBizPage({ onConsultation }) {
       {/* =================================================================
           SECTION 04 — CONNECTED THINKING
           ================================================================= */}
-      <section className="wg-connected" aria-labelledby="wg-connected-heading">
+      <section className="wg-connected relative isolate overflow-hidden" aria-labelledby="wg-connected-heading">
+        <ProcessWaves />
         <div className="wg-shell">
           <div className="wg-connected-header">
             <motion.p {...fadeIn(0.05)} className="wg-eyebrow">

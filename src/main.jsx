@@ -9,6 +9,8 @@ import BusinessStructuringPage from './business-structuring';
 import WhyGlowBizPage from './why-glowbiz';
 import { ServicesSection, ServicePage, ServicesHero, ConsultationPage } from './services';
 import ProcessSection from './process';
+import InsightsPage from './insights';
+import InsightDetailPage from './insight-detail';
 import './styles.css';
 
 const details = {
@@ -59,6 +61,7 @@ function Header({ onOpen }) {
     else if (page === 'Contact') route('/contact');
     else if (page === 'Why GlowBiz') route('/why-glowbiz');
     else if (page === 'Services') route('/services');
+    else if (page === 'Insights') route('/insights');
     else onOpen(page);
   };
 
@@ -79,6 +82,8 @@ function Header({ onOpen }) {
                 ? location.pathname.startsWith('/services')
                 : page === 'Why GlowBiz'
                 ? location.pathname === '/why-glowbiz'
+                : page === 'Insights'
+                ? location.pathname.startsWith('/insights')
                 : page === 'Contact'
                 ? location.pathname === '/contact'
                 : false;
@@ -146,6 +151,8 @@ function Header({ onOpen }) {
                   ? location.pathname.startsWith('/services')
                   : page === 'Why GlowBiz'
                   ? location.pathname === '/why-glowbiz'
+                  : page === 'Insights'
+                  ? location.pathname.startsWith('/insights')
                   : page === 'Contact'
                   ? location.pathname === '/contact'
                   : false;
@@ -317,7 +324,7 @@ function Footer({ onOpen }) {
               <li><Link to="/" className="hover:text-royal transition">Home</Link></li>
               <li><Link to="/services" className="hover:text-royal transition">Services</Link></li>
               <li><Link to="/why-glowbiz" className="hover:text-royal transition text-left">Why GlowBiz</Link></li>
-              <li><button onClick={() => onOpen('Insights')} className="hover:text-royal transition text-left">Insights</button></li>
+              <li><Link to="/insights" className="hover:text-royal transition text-left">Insights</Link></li>
               <li><Link to="/contact" className="hover:text-royal transition">Contact</Link></li>
             </ul>
           </div>
@@ -366,7 +373,11 @@ function App() {
   const [page, setPage] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const onOpen = target => target === 'Services' ? navigate('/services') : setPage(target);
+  const onOpen = target => {
+    if (target === 'Services') navigate('/services');
+    else if (target === 'Insights') navigate('/insights');
+    else setPage(target);
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
     setPage(null);
@@ -376,6 +387,16 @@ function App() {
       if (metaDesc) {
         metaDesc.setAttribute('content', 'Discover why entrepreneurs, investors and international families work with GlowBiz for strategic UAE business, banking, residency, investment and long-term planning guidance.');
       }
+    } else if (location.pathname === '/insights') {
+      // Let insights.jsx handle full SEO & collection schema, or fallback here
+      document.title = 'UAE Business, Banking & Investment Insights | GlowBiz Solutions';
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', 'Explore strategic insights from GlowBiz on UAE business setup, banking, residency, Golden Visa, investment, real estate and long-term planning for international clients.');
+      }
+    } else if (location.pathname.startsWith('/insights/')) {
+      // Let InsightDetailPage handle individual article SEO, schemas, and meta tags
+      return;
     } else if (detailPages.some(data => location.pathname === `/services/${data.id}`)) {
       document.title = `${detailPages.find(data => location.pathname === `/services/${data.id}`).label} \u2014 GlowBiz Solutions`;
     } else if (location.pathname === '/services/business-structuring') {
@@ -386,7 +407,40 @@ function App() {
       document.title = 'GlowBiz Solutions — Your Growth Partner in the UAE';
     }
   }, [location.pathname]);
-  return <MotionConfig reducedMotion="user"><a className="skip-link" href="#main-content">Skip to content</a><Header onOpen={onOpen} /><Routes><Route path="/" element={<main id="main-content"><Hero onOpen={onOpen} /><ServicesSection /><ProcessSection /><CtaSection onOpen={onOpen} /></main>} /><Route path="/services" element={<main id="main-content"><ServicesHero /><ExpertiseSection /><CtaSection onOpen={onOpen} {...servicesCta} /></main>} /><Route path="/why-glowbiz" element={<main id="main-content"><WhyGlowBizPage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...whyGlowbizCta} /></main>} /><Route path="/contact" element={<ConsultationPage onConsultation={() => setPage('Consultation')} />} /><Route path="/services/business-structuring" element={<BusinessStructuringPage />} />{detailPages.map(data => <Route key={data.id} path={`/services/${data.id}`} element={<ServiceDetailPage data={data} />} />)}<Route path="/services/banking-financial-structuring" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/services/banking" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/banking" element={<ServiceDetailPage data={detailPages[0]} />} /><Route path="/services/golden-visa" element={<ServiceDetailPage data={detailPages[1]} />} /><Route path="/golden-visa-residency" element={<ServiceDetailPage data={detailPages[1]} />} /><Route path="/services/investment" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/services/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/investment-real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/investment" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} /><Route path="/services/family-protection-succession-advisory" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/family" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} /><Route path="/services/:serviceId" element={<><ServicePage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></>} /><Route path="*" element={<main id="main-content" className="service-detail"><h1>Page not found</h1><Link to="/">Return home</Link></main>} /></Routes><Footer onOpen={onOpen} /><DetailDialog page={page} onClose={() => setPage(null)} onOpen={onOpen} /></MotionConfig>;
+  return (
+    <MotionConfig reducedMotion="user">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <Header onOpen={onOpen} />
+      <Routes>
+        <Route path="/" element={<main id="main-content"><Hero onOpen={onOpen} /><ServicesSection /><ProcessSection /><CtaSection onOpen={onOpen} /></main>} />
+        <Route path="/services" element={<main id="main-content"><ServicesHero /><ExpertiseSection /><CtaSection onOpen={onOpen} {...servicesCta} /></main>} />
+        <Route path="/why-glowbiz" element={<main id="main-content"><WhyGlowBizPage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...whyGlowbizCta} /></main>} />
+        <Route path="/insights" element={<main id="main-content"><InsightsPage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></main>} />
+        <Route path="/insights/:slug" element={<main id="main-content"><InsightDetailPage onConsultation={() => setPage('Consultation')} /></main>} />
+        <Route path="/contact" element={<ConsultationPage onConsultation={() => setPage('Consultation')} />} />
+        <Route path="/services/business-structuring" element={<BusinessStructuringPage />} />
+        {detailPages.map(data => <Route key={data.id} path={`/services/${data.id}`} element={<ServiceDetailPage data={data} />} />)}
+        <Route path="/services/banking-financial-structuring" element={<ServiceDetailPage data={detailPages[0]} />} />
+        <Route path="/services/banking" element={<ServiceDetailPage data={detailPages[0]} />} />
+        <Route path="/banking" element={<ServiceDetailPage data={detailPages[0]} />} />
+        <Route path="/services/golden-visa" element={<ServiceDetailPage data={detailPages[1]} />} />
+        <Route path="/golden-visa-residency" element={<ServiceDetailPage data={detailPages[1]} />} />
+        <Route path="/services/investment" element={<ServiceDetailPage data={detailPages[2]} />} />
+        <Route path="/services/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} />
+        <Route path="/investment-real-estate" element={<ServiceDetailPage data={detailPages[2]} />} />
+        <Route path="/investment" element={<ServiceDetailPage data={detailPages[2]} />} />
+        <Route path="/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} />
+        <Route path="/services/family-protection-succession-advisory" element={<ServiceDetailPage data={detailPages[3]} />} />
+        <Route path="/services/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} />
+        <Route path="/services/family" element={<ServiceDetailPage data={detailPages[3]} />} />
+        <Route path="/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} />
+        <Route path="/services/:serviceId" element={<><ServicePage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></>} />
+        <Route path="*" element={<main id="main-content" className="service-detail"><h1>Page not found</h1><Link to="/">Return home</Link></main>} />
+      </Routes>
+      <Footer onOpen={onOpen} />
+      <DetailDialog page={page} onClose={() => setPage(null)} onOpen={onOpen} />
+    </MotionConfig>
+  );
 }
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><BrowserRouter><App /></BrowserRouter></React.StrictMode>);
