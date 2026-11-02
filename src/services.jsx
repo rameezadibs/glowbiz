@@ -18,19 +18,8 @@ export const services = [
     detail: 'Explore strategic business structuring, license application, and operational setup tailored to your UAE growth goals.'
   },
   {
-    id: 'banking-financial-structuring',
-    number: '02',
-    title: 'Banking & Financial Structuring',
-    lines: ['Banking & Financial', 'Structuring'],
-    icon: Landmark,
-    image: 'banking',
-    alt: 'Contemporary banking towers and corporate financial institution',
-    description: 'Strategic advisory for corporate banking readiness, account opening, and financial structuring.',
-    detail: 'Seamless corporate and personal bank account opening with institutional compliance and financial structuring.'
-  },
-  {
     id: 'investment-real-estate',
-    number: '03',
+    number: '02',
     title: 'Investment & Real Estate',
     lines: ['Investment &', 'Real Estate'],
     icon: TrendingUp,
@@ -38,6 +27,17 @@ export const services = [
     alt: 'Dubai luxury real estate and investment positioning',
     description: 'Strategic guidance for clients evaluating UAE real estate opportunities and broader investment positioning.',
     detail: 'Strategic guidance for clients evaluating UAE real estate opportunities and broader investment positioning.'
+  },
+  {
+    id: 'banking-financial-structuring',
+    number: '03',
+    title: 'Banking & Financial Structuring',
+    lines: ['Banking & Financial', 'Structuring'],
+    icon: Landmark,
+    image: 'banking',
+    alt: 'Contemporary banking towers and corporate financial institution',
+    description: 'Strategic advisory for corporate banking readiness, account opening, and financial structuring.',
+    detail: 'Seamless corporate and personal bank account opening with institutional compliance and financial structuring.'
   },
   {
     id: 'golden-visa-residency',
@@ -84,7 +84,6 @@ function ServiceCard({ service, index }) {
         <motion.img whileHover={reduced ? undefined : { scale: 1.05 }} transition={{ duration: .7 }} src={`/assets/service-${service.image}-800.webp`} srcSet={`/assets/service-${service.image}-400.webp 400w, /assets/service-${service.image}-800.webp 800w`} sizes="(max-width: 600px) 88vw, (max-width: 1100px) 43vw, 22vw" alt={service.alt} loading="lazy" width="800" height="800" />
         <div className="service-photo-tint" />
       </div>
-      <span className="service-number" aria-hidden="true">{service.number}</span>
       <svg className="service-curve" viewBox="0 0 350 150" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 2 C90 85 220 128 350 140 V150 H0Z" fill="#ffffff" fillOpacity=".47"/>
         <path d="M0 26 C98 102 235 137 350 150 H0Z" fill="#f2f7ff" fillOpacity=".97"/>
