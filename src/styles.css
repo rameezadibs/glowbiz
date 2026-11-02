@@ -90,12 +90,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .header-cta { min-height: 42px; height: 42px; font-size: 14.5px; padding: 0 22px; border-radius: 9999px; }
 .menu-toggle { display: none; }
 .mobile-nav { display: none; }
-.hero { min-height: 700px; height: 88vh; max-height: 880px; }
+.hero { min-height: 580px; height: 76vh; max-height: 740px; }
 .hero-picture { transform-origin: 72% 50%; }
 .hero-picture img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .hero-wash { background: linear-gradient(90deg, #f0f6fc44 0%, #f6f9fc22 45%, transparent 65%); }
-.hero-inner { max-width: 1440px; height: 100%; padding: 110px 6% 50px; display: flex; align-items: center; }
-.hero-content { width: 740px; padding-bottom: 40px; }
+.hero-inner { max-width: 1440px; height: 100%; padding: 90px 6% 40px; display: flex; align-items: center; }
+.hero-content { width: 740px; padding-bottom: 24px; }
 .eyebrow { gap: 18px; font-size: 11.5px; letter-spacing: 3.5px; font-weight: 700; color: #3b5b80; margin: 0 0 24px; }
 .eyebrow > span { height: 1px; width: 50px; background: #254f84; flex-shrink: 0; }
 h1 { font-family: 'Outfit', sans-serif; font-size: clamp(48px, 4.4vw, 72px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; margin: 0; }
@@ -222,7 +222,7 @@ h1 > span { display: block; white-space: nowrap; }
 
 /* CTA Section */
 .cta-section {
-  padding: 96px 6% 86px;
+  padding: 56px 6% 52px;
   background: linear-gradient(135deg, #0b1d33 0%, #124a9d 100%);
   color: white;
 }

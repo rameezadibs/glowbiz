@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Building2, Box, Globe2, LayoutGrid, Settings2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Building2, Box, Globe2, LayoutGrid, Settings2 } from 'lucide-react';
 import { expertiseServices } from './expertise-data';
 import './expertise.css';
 
@@ -8,14 +8,31 @@ const areaIcons = [Building2, Box, Globe2, LayoutGrid, Settings2];
 export function ExpertiseSection() {
   const [active, setActive] = useState(0);
   const service = expertiseServices[active];
+
+  function handleSelectService(index) {
+    setActive(index);
+    if (typeof window !== 'undefined' && window.innerWidth <= 1000) {
+      const panel = document.getElementById('expertise-panel');
+      if (panel) {
+        const headerOffset = 125;
+        const panelPosition = panel.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: Math.max(0, panelPosition - headerOffset),
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
+
   function navigateTabs(event, index) {
     const keys = { ArrowDown: (index + 1) % 5, ArrowRight: (index + 1) % 5, ArrowUp: (index + 4) % 5, ArrowLeft: (index + 4) % 5, Home: 0, End: 4 };
     if (keys[event.key] !== undefined) {
       event.preventDefault();
-      setActive(keys[event.key]);
+      handleSelectService(keys[event.key]);
       document.getElementById(`expertise-tab-${keys[event.key]}`)?.focus();
     }
   }
+
   return <section id="services" className="expertise-section" aria-labelledby="services-heading">
     <div className="expertise-intro">
       <p className="strategy-eyebrow"><span aria-hidden="true" />OUR EXPERTISE</p>
@@ -23,8 +40,9 @@ export function ExpertiseSection() {
     </div>
     <div className="expertise-layout">
       <div className="expertise-tabs" role="tablist" aria-label="Explore our expertise" aria-orientation="vertical">
-        {expertiseServices.map((item, index) => <button key={item.id} id={`expertise-tab-${index}`} role="tab" aria-selected={active === index} aria-controls="expertise-panel" tabIndex={active === index ? 0 : -1} onClick={() => setActive(index)} onPointerMove={event => { if (event.pointerType === 'mouse') setActive(index); }} onKeyDown={event => navigateTabs(event, index)}>
-          <span className="expertise-number" aria-hidden="true">0{index + 1}</span><span className="expertise-name">{item.title}</span><span className="expertise-arrow" aria-hidden="true"><ArrowRight size={20} strokeWidth={1.3} /></span>
+        {expertiseServices.map((item, index) => <button key={item.id} id={`expertise-tab-${index}`} role="tab" aria-selected={active === index} aria-controls="expertise-panel" tabIndex={active === index ? 0 : -1} onClick={() => handleSelectService(index)} onPointerMove={event => { if (event.pointerType === 'mouse') setActive(index); }} onKeyDown={event => navigateTabs(event, index)}>
+          <span className="expertise-tab-number">0{index + 1}</span>
+          <span className="expertise-name">{item.title}</span><span className="expertise-arrow" aria-hidden="true"><ArrowRight size={20} strokeWidth={1.3} /></span>
         </button>)}
       </div>
       <div id="expertise-panel" role="tabpanel" aria-labelledby={`expertise-tab-${active}`} tabIndex={0} className="expertise-panel">
@@ -48,6 +66,58 @@ export function ExpertiseSection() {
           </svg>)}
         </div>
         <Link className="expertise-cta expertise-mobile-cta" to={`/services/${service.id}`}>Learn More<ArrowRight size={20} aria-hidden="true" /></Link>
+
+        {/* Mobile-Only Bottom Service Switcher */}
+        <div className="expertise-mobile-switcher" aria-label="Switch service on mobile">
+          <div className="expertise-mobile-switcher-header">
+            <span className="expertise-switcher-eyebrow">EXPLORE OTHER SERVICES</span>
+            <span className="expertise-switcher-count">0{active + 1} / 0{expertiseServices.length}</span>
+          </div>
+
+          <div className="expertise-mobile-chips" role="tablist" aria-label="Quick select service">
+            {expertiseServices.map((item, index) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`expertise-chip ${active === index ? 'is-active' : ''}`}
+                onClick={() => handleSelectService(index)}
+                aria-label={`View ${item.title}`}
+                aria-pressed={active === index}
+              >
+                <span className="expertise-chip-idx">0{index + 1}</span>
+                <span className="expertise-chip-title">{item.title}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="expertise-mobile-nav-pair">
+            <button
+              type="button"
+              className="expertise-mobile-nav-btn expertise-prev"
+              onClick={() => handleSelectService((active + expertiseServices.length - 1) % expertiseServices.length)}
+              aria-label="View previous service"
+            >
+              <ArrowLeft size={16} aria-hidden="true" />
+              <div className="expertise-nav-meta">
+                <span className="expertise-nav-dir">PREVIOUS</span>
+                <span className="expertise-nav-name">{expertiseServices[(active + expertiseServices.length - 1) % expertiseServices.length].title}</span>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              className="expertise-mobile-nav-btn expertise-next"
+              onClick={() => handleSelectService((active + 1) % expertiseServices.length)}
+              aria-label="View next service"
+            >
+              <div className="expertise-nav-meta text-right">
+                <span className="expertise-nav-dir">NEXT SERVICE</span>
+                <span className="expertise-nav-name">{expertiseServices[(active + 1) % expertiseServices.length].title}</span>
+              </div>
+              <ArrowRight size={16} aria-hidden="true" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>;

@@ -7,6 +7,13 @@ export const expertiseServices = [
     image: '/services/1.png', alt: 'Business structuring pillars for licensing, ownership, jurisdiction and operations beside a UAE map and Dubai skyline.'
   },
   {
+    id: 'investment-real-estate', title: 'Investment & Real Estate', label: 'INVESTMENT & REAL ESTATE',
+    heading: ['Invest with a', 'Wider Perspective.'],
+    paragraphs: ['The UAE is both a business hub and an investment destination. GlowBiz helps you evaluate property and financial opportunities strategically, connecting each decision to liquidity, residency, and long-term wealth positioning.'],
+    areas: ['Investment property evaluation guidance', 'Developer and project assessment', 'Property-linked residency considerations', 'Investment positioning considerations within the UAE'],
+    image: '/services/4.png', alt: 'Waterfront Dubai property with investment plans and a globe.'
+  },
+  {
     id: 'banking', title: 'Banking', label: 'BANKING',
     heading: ['Prepare for UAE Banking', 'with Greater Clarity.'],
     paragraphs: ['Opening a bank account in the UAE requires preparation, documentation planning, and an understanding of banking expectations.', 'GlowBiz helps clients position their profile effectively and prepare for banking processes before approaching financial institutions.'],
@@ -19,13 +26,6 @@ export const expertiseServices = [
     paragraphs: ['Residency choices should reinforce your business and personal goals. GlowBiz evaluates the most suitable pathway — whether as an entrepreneur, investor, business owner, or long-term resident — and ensures it aligns with company setup, property ownership, and your broader UAE presence.'],
     areas: ['Golden Visa eligibility guidance', 'Investor residency pathways', 'Entrepreneur residency planning', 'Residency structuring aligned with business or investment activities'],
     image: '/services/3.png', alt: 'A UAE Golden Visa passport and illuminated pathway beside the Dubai skyline.'
-  },
-  {
-    id: 'investment-real-estate', title: 'Investment & Real Estate', label: 'INVESTMENT & REAL ESTATE',
-    heading: ['Invest with a', 'Wider Perspective.'],
-    paragraphs: ['The UAE is both a business hub and an investment destination. GlowBiz helps you evaluate property and financial opportunities strategically, connecting each decision to liquidity, residency, and long-term wealth positioning.'],
-    areas: ['Investment property evaluation guidance', 'Developer and project assessment', 'Property-linked residency considerations', 'Investment positioning considerations within the UAE'],
-    image: '/services/4.png', alt: 'Waterfront Dubai property with investment plans and a globe.'
   },
   {
     id: 'family-protection-succession', title: 'Family Protection & Succession Advisory', label: 'FAMILY PROTECTION & SUCCESSION ADVISORY',

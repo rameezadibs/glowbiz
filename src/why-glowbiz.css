@@ -340,9 +340,12 @@ body:has(.why-glowbiz-page) .site-header:not(.scrolled) .brand-logo-link {
 /* ---------------------------------------------------------------------
    SECTION 03 — THE GLOWBIZ DIFFERENCE (FIVE PRINCIPLES)
    --------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------
+   SECTION 03 — THE GLOWBIZ DIFFERENCE (FIVE PRINCIPLES)
+   --------------------------------------------------------------------- */
 .wg-difference {
   position: relative;
-  padding: 35px 0 35px;
+  padding: 36px 0 36px;
   background: #ffffff;
   overflow: hidden;
 }
@@ -350,168 +353,90 @@ body:has(.why-glowbiz-page) .site-header:not(.scrolled) .brand-logo-link {
 .wg-diff-header {
   text-align: center;
   max-width: 780px;
-  margin: 0 auto 40px;
+  margin: 0 auto 32px;
 }
 
 .wg-diff-header h2 {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(38px, 4vw, 58px);
+  font-size: clamp(34px, 3.4vw, 48px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.15;
   color: var(--wg-navy);
   margin: 0;
 }
 
-/* Vertical Journey Spine */
-.wg-journey-timeline {
-  position: relative;
-  max-width: 1240px;
-  margin: 0 auto;
-}
-
-/* Central vertical connecting blue line */
-.wg-journey-spine {
-  position: absolute;
-  top: 40px;
-  bottom: 25px;
-  left: 50%;
-  width: 2px;
-  background: linear-gradient(180deg, #cde1f4 0%, #124a9d 50%, #cde1f4 100%);
-  transform: translateX(-50%);
-  z-index: 1;
-}
-
-.wg-journey-step {
+/* Compact Principles Grid */
+.wg-principles-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 80px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   position: relative;
-  margin-bottom: 100px;
   z-index: 2;
 }
 
-.wg-journey-step:last-child {
-  margin-bottom: 0;
+@media (max-width: 1024px) {
+  .wg-principles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* Alternating layout: 1 right, 1 left */
-.wg-journey-step.step-odd .wg-step-text {
-  grid-column: 1;
-  grid-row: 1;
-  text-align: left;
-  padding-right: 40px;
+@media (max-width: 680px) {
+  .wg-principles-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.wg-journey-step.step-odd .wg-step-text {
-  max-width: 480px;
-  margin-left: auto;
-}
-
-.wg-journey-step.step-odd .wg-step-visual {
-  grid-column: 2;
-  grid-row: 1;
-  padding-left: 40px;
-}
-
-.wg-journey-step.step-even .wg-step-visual {
-  grid-column: 1;
-  grid-row: 1;
-  padding-right: 40px;
-}
-
-.wg-journey-step.step-even .wg-step-text {
-  grid-column: 2;
-  grid-row: 1;
-  text-align: left;
-  padding-left: 40px;
-  max-width: 480px;
-  margin-right: auto;
-}
-
-/* Milestone pin on the spine */
-.wg-step-milestone-marker {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.wg-principle-card {
   background: #ffffff;
-  border: 2px solid var(--wg-blue);
-  box-shadow: 0 0 0 6px #eaf4ff, 0 8px 20px rgba(18, 74, 157, 0.12);
+  border: 1px solid var(--wg-sky-border);
+  border-radius: 14px;
+  padding: 24px 22px;
+  box-shadow: 0 4px 16px rgba(20, 47, 85, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  font-family: 'Outfit', sans-serif;
-  font-size: 14.5px;
-  font-weight: 800;
-  color: var(--wg-blue);
+  flex-direction: column;
+}
+
+.wg-principle-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--wg-blue);
+  box-shadow: 0 12px 28px rgba(18, 74, 157, 0.08);
+}
+
+.wg-principle-card-top {
+  margin-bottom: 12px;
 }
 
 .wg-step-badge {
   display: inline-block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.17em;
+  letter-spacing: 0.16em;
   color: #124a9d;
   background: #eaf4ff;
   border: 1px solid #b0caed;
-  padding: 5px 14px;
+  padding: 4px 12px;
   border-radius: 999px;
-  margin-bottom: 16px;
 }
 
-.wg-step-text h3 {
+.wg-principle-card h3 {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(26px, 2.3vw, 36px);
+  font-size: clamp(20px, 1.5vw, 23px);
   font-weight: 700;
-  line-height: 1.18;
-  letter-spacing: -0.025em;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
   color: var(--wg-navy);
-  margin: 0 0 16px;
+  margin: 0 0 10px;
 }
 
-.wg-step-text p {
+.wg-principle-card p {
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(15.5px, 1.05vw, 17.5px);
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--wg-muted-dark);
   margin: 0;
-  max-width: 480px;
-}
-
-.wg-step-visual {
-  position: relative;
-}
-
-.wg-step-img-card {
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  background: #f1f6fc;
-  border: 1px solid var(--wg-sky-border);
-  box-shadow: 0 20px 45px -10px rgba(20, 47, 85, 0.1);
-  aspect-ratio: 4 / 3;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.wg-step-img-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 25px 55px -10px rgba(18, 74, 157, 0.18);
-}
-
-.wg-step-img-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .wg-step-img-card:hover img {
@@ -805,12 +730,26 @@ body:has(.why-glowbiz-page) .site-header:not(.scrolled) .brand-logo-link {
   margin: 0 0 12px;
 }
 
-.wg-client-desc {
-  font-family: var(--wg-sans);
-  font-size: 15px;
+.wg-client-card-compact {
+  padding: 26px 24px;
+  background: #f7faff;
+  border-radius: 16px;
+  border: 1px solid var(--wg-sky-border);
+  box-shadow: 0 4px 18px rgba(20, 47, 85, 0.05);
+}
+
+.wg-client-card-compact .wg-client-body {
+  padding: 0;
+}
+
+.wg-client-card-compact .wg-client-title {
+  font-size: clamp(21px, 1.8vw, 25px);
+  margin-bottom: 8px;
+}
+
+.wg-client-card-compact .wg-client-desc {
+  font-size: 14.5px;
   line-height: 1.6;
-  color: var(--wg-muted);
-  margin: 0;
 }
 
 /* ---------------------------------------------------------------------
@@ -818,7 +757,7 @@ body:has(.why-glowbiz-page) .site-header:not(.scrolled) .brand-logo-link {
    --------------------------------------------------------------------- */
 .wg-cta {
   position: relative;
-  padding: 120px 0 130px;
+  padding: 48px 0 52px;
   background: linear-gradient(180deg, #f3f8fd 0%, #e8f2fc 100%);
   border-top: 1px solid var(--wg-sky-border);
   overflow: hidden;
@@ -842,18 +781,18 @@ body:has(.why-glowbiz-page) .site-header:not(.scrolled) .brand-logo-link {
   z-index: 2;
   max-width: 1120px;
   margin: 0 auto;
-  border-radius: 28px;
+  border-radius: 24px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 25px 60px -15px rgba(20, 47, 85, 0.12),
+  box-shadow: 0 20px 45px -12px rgba(20, 47, 85, 0.1),
               0 0 0 1px rgba(207, 225, 243, 0.8);
-  padding: 80px 70px;
+  padding: 44px 50px;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   align-items: center;
-  gap: 60px;
+  gap: 40px;
 }
 
 .wg-cta-content {

@@ -3,10 +3,10 @@ import { Search, Settings, FileText, UsersRound } from 'lucide-react';
 import './process.css';
 
 export const processStages = [
-  { number: '01', title: 'Discovery', icon: Search, description: 'We understand your goals, assess your needs and explore the right opportunities.' },
-  { number: '02', title: 'Structuring', icon: Settings, description: 'We design a tailored strategy and structure the right solutions for your business and personal goals.' },
-  { number: '03', title: 'Execution', icon: FileText, description: 'Our experts handle the complete implementation with precision and compliance.' },
-  { number: '04', title: 'Ongoing Support', icon: UsersRound, description: 'We continue to support your growth with proactive guidance and long-term partnership.' },
+  { id: 'discovery', title: 'Discovery', icon: Search, description: 'We understand your goals, assess your needs and explore the right opportunities.' },
+  { id: 'structuring', title: 'Structuring', icon: Settings, description: 'We design a tailored strategy and structure the right solutions for your business and personal goals.' },
+  { id: 'execution', title: 'Execution', icon: FileText, description: 'Our experts handle the complete implementation with precision and compliance.' },
+  { id: 'support', title: 'Ongoing Support', icon: UsersRound, description: 'We continue to support your growth with proactive guidance and long-term partnership.' },
 ];
 
 function reveal(reduced, delay = 0) {
@@ -55,8 +55,7 @@ export default function ProcessSection() {
         <ol className="process-grid grid">
           {processStages.map((stage, index) => {
             const Icon = stage.icon;
-            return <li className="process-stage" key={stage.number}>
-              <motion.div {...reveal(reduced, .15 + index * .12)} className="process-number">{stage.number}</motion.div>
+            return <li className="process-stage" key={stage.id}>
               <motion.div className="process-icon-reveal" initial={reduced ? false : {opacity:0,scale:.9}} whileInView={{opacity:1,scale:1}} viewport={{once:true}} transition={{duration:.45,delay:.25 + index * .12}}>
                 <div className="process-icon"><Icon size={38} strokeWidth={1.65} aria-hidden="true"/></div>
               </motion.div>

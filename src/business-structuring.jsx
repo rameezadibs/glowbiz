@@ -29,11 +29,6 @@ const framework = [
   ['Business model', BriefcaseBusiness], ['Revenue source', GitBranch], ['Client geography', Globe2],
   ['Banking strategy', Landmark], ['Visa requirement', UserRound], ['Long-term expansion', TrendingUp],
 ];
-const considerations = [
-  "Where the company's customers and revenue will come from", 'Whether direct UAE market access is required',
-  'Nature of the licensed activities', 'Office and operational requirements', 'Number and type of visas required',
-  'Banking requirements', 'Regulatory and approval requirements', 'Long-term expansion plans',
-];
 const faqs = [
   ['Which is better—mainland or free zone?', 'If you plan to operate directly in the UAE market, mainland is usually the stronger option. If your business is primarily international, service-based, or needs a lighter setup structure, a free zone is often more suitable.'],
   ['When does offshore make sense?', 'Offshore is typically used for holding structures, asset ownership, or wider structuring needs. It is not the usual choice for someone who wants to actively trade or operate on the ground in the UAE.'],
@@ -113,8 +108,9 @@ function Faqs() {
 export default function BusinessStructuringPage() {
   return <main id="main-content" className="business-structuring-page">
     <section className="bs-hero" aria-labelledby="bs-heading">
-      <div className="bs-hero-content"><Link to="/services" className="bs-back"><ArrowLeft size={16} aria-hidden="true" />All services</Link><Eyebrow>01 — BUSINESS STRUCTURING</Eyebrow>
-        <h1 id="bs-heading">Build the Right<br />Structure <em>From<br />the Beginning.</em></h1>
+      <div className="bs-hero-content"><Link to="/services" className="bs-back"><ArrowLeft size={16} aria-hidden="true" />All services</Link>
+        <h1 id="bs-heading" className="bs-hero-title">Business Structuring</h1>
+        <p className="bs-hero-subtitle">Build the Right Structure <em>From the Beginning.</em></p>
         <div className="bs-introduction"><p>Choosing the right business structure in the UAE is one of the most important early decisions. The structure you select affects ownership, market access, licensing, residency options, banking readiness, and long-term flexibility.</p><p>GlowBiz helps clients assess mainland, free zone, and offshore structures based on your actual objectives—not just what is easiest to sell.</p></div>
         <div className="bs-help"><h2>What GlowBiz Helps With</h2><ul>{helpPoints.map(point => <li key={point}><span className="bs-check"><Check size={13} strokeWidth={1.7} aria-hidden="true" /></span><span>{point}</span></li>)}</ul></div>
         <div className="bs-actions"><ConsultationLink>Discuss Your Structure</ConsultationLink><ConsultationLink>Book a Consultation</ConsultationLink></div>
@@ -126,26 +122,19 @@ export default function BusinessStructuringPage() {
       <ProcessWaves />
       <div className="bs-shell">
         <Eyebrow>BUSINESS STRUCTURING SOLUTIONS</Eyebrow><h2 id="bs-solutions-heading">From Establishment to<span>Ongoing Corporate Support.</span></h2>
-        <div className="bs-solutions-grid">{solutions.map((solution, index) => { const Icon = solution.icon; return <article key={solution.title} className="bs-solution">
-          <Architecture asset={solution.image} alt={solution.alt} className={solution.architectural ? 'bs-cropped' : ''} /><div className="bs-solution-marker"><Icon size={25} strokeWidth={1.3} aria-hidden="true" /><span>0{index + 1}</span></div><h3>{solution.title}</h3>{solution.paragraphs.map(text => <p key={text}>{text}</p>)}
+        <div className="bs-solutions-grid">{solutions.map((solution, index) => { const Icon = solution.icon; return <article key={solution.title} className="bs-solution bs-solution-compact">
+          <div className="bs-solution-marker"><Icon size={25} strokeWidth={1.3} aria-hidden="true" /></div><h3>{solution.title}</h3>{solution.paragraphs.map(text => <p key={text}>{text}</p>)}
         </article>; })}</div>
       </div>
     </section>
 
     <section className="bs-framework" aria-labelledby="bs-framework-heading"><div className="bs-shell"><Eyebrow>HOW WE DECIDE THE RIGHT STRUCTURE FOR YOU</Eyebrow><h2 id="bs-framework-heading">A Practical Framework<span>for a Stronger Foundation.</span></h2>
-      <ol className="bs-framework-steps">{framework.map(([name, Icon], index) => <li key={name}><span className="bs-factor-index">0{index + 1}</span><Icon size={32} strokeWidth={1.2} aria-hidden="true" /><h3>{name}</h3><span className="bs-factor-dot" aria-hidden="true" /></li>)}</ol>
+      <ol className="bs-framework-steps">{framework.map(([name, Icon]) => <li key={name}><Icon size={32} strokeWidth={1.2} aria-hidden="true" /><h3>{name}</h3><span className="bs-factor-dot" aria-hidden="true" /></li>)}</ol>
       <div className="bs-practical"><p className="bs-small-label">At a practical level:</p><div><ul><li>Mainland structures provide direct access to the UAE market</li><li>Free zone structures are typically more efficient for international and service-based businesses</li></ul><p>The right choice depends on how and where your business generates revenue.</p></div></div>
     </div></section>
 
-    <section className="bs-comparison bs-shell" aria-labelledby="bs-comparison-heading"><div className="bs-comparison-intro"><div><Eyebrow>MAINLAND VS FREE ZONE</Eyebrow><h2 id="bs-comparison-heading">Key Considerations<span>Before You Decide.</span></h2></div><p>The decision between Mainland and Free Zone should be based on the actual business model rather than setup cost alone.</p></div>
-      <ul className="bs-considerations">{considerations.map((point, index) => <li key={point}><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{point}</li>)}</ul>
-      <div className="bs-comparison-scenes"><figure><Architecture asset="/business/mainland.png" alt="Mainland: a contemporary Dubai commercial district with direct access to the urban economy" /><figcaption><span className="bs-small-label">01 / UAE MARKET ACCESS</span><h3>Mainland</h3></figcaption></figure><div className="bs-decision-path" aria-hidden="true"><span /><Globe2 size={24} strokeWidth={1.2} /><span /></div><figure><Architecture asset="/business/free%20zone.png" alt="Free Zone: a contemporary international business district with connected glass towers" /><figcaption><span className="bs-small-label">02 / INTERNATIONAL BUSINESS</span><h3>Free Zone</h3></figcaption></figure></div>
-      <p className="bs-comparison-statement">The right choice depends on the business.</p>
-      <div className="bs-comparison-summary"><p>Mainland structures generally provide greater flexibility for businesses operating directly within the UAE market, while Free Zone structures can provide an efficient solution for international, service-based and specialised businesses.</p><p>GlowBiz evaluates these considerations together before recommending a structure, rather than treating jurisdiction selection as an isolated licensing decision.</p></div>
-    </section>
-
     <Faqs />
 
-    <section className="bs-final" aria-labelledby="bs-final-heading"><div className="bs-final-content"><Eyebrow>START WITH THE RIGHT STRUCTURE</Eyebrow><h2 id="bs-final-heading">Need Help Choosing<span>the Right UAE Structure?</span></h2><p>Discuss your business model, market plans, banking requirements, residency needs, and long-term objectives before selecting a structure.</p><ConsultationLink>Schedule a Consultation</ConsultationLink></div><img src="/assets/structuring-pathway.webp" alt="Sweeping white architectural pathway beside reflective water leading toward the Dubai skyline" loading="lazy" width="1600" height="900" /></section>
+    <section className="bs-final" aria-labelledby="bs-final-heading"><div className="bs-final-content"><Eyebrow>START WITH THE RIGHT STRUCTURE</Eyebrow><h2 id="bs-final-heading">Need Help Choosing<span>the Right UAE Structure?</span></h2><p>Discuss your business model, market plans, banking requirements, residency needs, and long-term objectives before selecting a structure.</p><ConsultationLink>Schedule a Consultation</ConsultationLink></div></section>
   </main>;
 }

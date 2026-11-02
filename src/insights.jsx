@@ -105,10 +105,7 @@ export default function InsightsPage({ onConsultation }) {
   const reduceMotion = useReducedMotion();
   const [selectedCategory, setSelectedCategory] = useState('All Insights');
   const [searchQuery, setSearchQuery] = useState('');
-  const [visibleCount, setVisibleCount] = useState(6);
   const [activeStrategicNode, setActiveStrategicNode] = useState('business');
-
-  const featured = useMemo(() => getFeaturedInsight(), []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -163,8 +160,8 @@ export default function InsightsPage({ onConsultation }) {
     };
   }, []);
 
-  // Filtered list for Section 06 Insights Library
-  const filteredLibraryArticles = useMemo(() => {
+  // Filtered list of articles for the clean 1-by-1 organized catalogue
+  const filteredArticles = useMemo(() => {
     return insightsArticles.filter(article => {
       const matchesCategory = 
         selectedCategory === 'All Insights' || article.category === selectedCategory;
@@ -180,13 +177,8 @@ export default function InsightsPage({ onConsultation }) {
     });
   }, [selectedCategory, searchQuery]);
 
-  // Non-featured articles for Section 04 Latest Insights magazine grid
-  const latestMagazineArticles = useMemo(() => {
-    return insightsArticles.filter(a => a.id !== featured.id).slice(0, 5);
-  }, [featured]);
-
-  const scrollToSection = id => {
-    const el = document.getElementById(id);
+  const scrollToArticles = () => {
+    const el = document.getElementById('insights-catalogue');
     if (el) {
       const headerOffset = 90;
       const elementPosition = el.getBoundingClientRect().top;
@@ -203,7 +195,7 @@ export default function InsightsPage({ onConsultation }) {
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.15 },
     transition: { 
-      duration: reduceMotion ? 0 : 0.65, 
+      duration: reduceMotion ? 0 : 0.5, 
       delay: reduceMotion ? 0 : delay, 
       ease: [0.16, 1, 0.3, 1] 
     },
@@ -218,7 +210,6 @@ export default function InsightsPage({ onConsultation }) {
         <div className="ins-hero-bg-accent" aria-hidden="true" />
         <div className="ins-shell">
           <div className="ins-hero-center-wrap text-center">
-            {/* Centered Editorial copy */}
             <motion.div {...fadeIn(0.05)} className="ins-hero-content">
               <p className="ins-eyebrow justify-center">GLOWBIZ INSIGHTS</p>
               
@@ -228,16 +219,16 @@ export default function InsightsPage({ onConsultation }) {
               </h1>
 
               <p className="ins-hero-lead">
-                Practical insights for entrepreneurs, investors and international families navigating business, banking, residency, investment and long-term planning in the UAE.
+                Practical, structured advisory guides for entrepreneurs, investors and international families navigating business setup, banking readiness, residency, and long-term planning in the UAE.
               </p>
 
               <button 
                 type="button"
-                onClick={() => scrollToSection('featured-insight')}
+                onClick={scrollToArticles}
                 className="ins-hero-scroll-btn"
-                aria-label="Scroll to featured and latest insights"
+                aria-label="Scroll to insights directory"
               >
-                <span>Explore Latest Insights</span>
+                <span>Browse All Insights</span>
                 <ArrowDown size={17} aria-hidden="true" />
               </button>
             </motion.div>
@@ -246,13 +237,13 @@ export default function InsightsPage({ onConsultation }) {
       </section>
 
       {/* =================================================================
-          SECTION 02 — INSIGHT CATEGORIES NAVIGATION STRIP
+          SECTION 02 — CLEAN TOPIC NAVIGATION STRIP
           ================================================================= */}
       <nav className="ins-categories-strip" aria-label="Insight categories filter">
         <div className="ins-shell">
           <div className="ins-categories-inner">
             <span className="ins-cat-eyebrow">
-              EXPLORE BY TOPIC:
+              FILTER BY TOPIC:
             </span>
 
             <div className="ins-cat-nav-list" role="tablist">
@@ -265,7 +256,7 @@ export default function InsightsPage({ onConsultation }) {
                     aria-selected={isActive}
                     onClick={() => {
                       setSelectedCategory(category);
-                      scrollToSection('insights-library');
+                      scrollToArticles();
                     }}
                     className={`ins-cat-tab ${isActive ? 'active' : ''}`}
                   >
@@ -279,222 +270,165 @@ export default function InsightsPage({ onConsultation }) {
       </nav>
 
       {/* =================================================================
-          SECTION 03 — FEATURED INSIGHT
+          SECTION 03 — ORGANIZED 1-BY-1 INSIGHTS DIRECTORY
           ================================================================= */}
-      <section id="featured-insight" className="ins-featured-section" aria-labelledby="featured-insight-heading">
+      <section id="insights-catalogue" className="ins-catalogue-section" aria-labelledby="catalogue-heading">
         <div className="ins-shell">
-          <motion.div {...fadeIn(0.05)}>
-            <p className="ins-eyebrow">FEATURED INSIGHT</p>
-          </motion.div>
-
-          <div className="ins-featured-grid">
-            {/* Visual (approx 58-60%) */}
-            <motion.div {...fadeIn(0.1)}>
-              <Link 
-                to={`/insights/${featured.slug}`} 
-                className="ins-featured-link block group"
-                aria-label={`Read cover story: ${featured.title}`}
-              >
-                <div className="ins-featured-image-wrapper">
-                  <img 
-                    src={featured.featuredImage} 
-                    alt={featured.imageAlt} 
-                    loading="lazy"
-                    width="960" 
-                    height="600"
-                  />
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Content (approx 40-42%) */}
-            <motion.div {...fadeIn(0.2)}>
-              <div className="ins-featured-meta-row">
-                <span className="ins-badge">{featured.category}</span>
-                {featured.isSuggested && (
-                  <span className="ins-badge-suggested">Suggested</span>
-                )}
-                <span className="ins-meta-item">
-                  <Calendar size={13} aria-hidden="true" />
-                  {featured.publishedDate}
-                </span>
-                <span className="ins-meta-item">
-                  <Clock size={13} aria-hidden="true" />
-                  {featured.readingTime}
-                </span>
-              </div>
-
-              <div className="ins-featured-rule" aria-hidden="true" />
-
-              <h2 id="featured-insight-heading" className="ins-featured-title">
-                <Link to={`/insights/${featured.slug}`} className="hover:text-royal transition-colors">
-                  {featured.title}
-                </Link>
+          {/* Header & Search Toolbar */}
+          <div className="ins-catalogue-toolbar">
+            <div className="ins-catalogue-header-info">
+              <span className="ins-catalogue-badge">Advisory Knowledge Hub</span>
+              <h2 id="catalogue-heading" className="ins-catalogue-heading">
+                All Strategic Insights
               </h2>
-
-              <p className="ins-featured-excerpt">
-                {featured.excerpt}
+              <p className="ins-catalogue-subtitle">
+                Organized guide-by-guide for comprehensive reference. Select any insight for detailed regulatory analysis, comparisons and step-by-step guidance.
               </p>
+            </div>
 
-              <Link 
-                to={`/insights/${featured.slug}`} 
-                className="ins-read-link"
-              >
-                <span>Read Insight</span>
-                <ArrowRight size={17} aria-hidden="true" />
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* =================================================================
-          SECTION 04 — LATEST INSIGHTS (EDITORIAL MAGAZINE LAYOUT)
-          ================================================================= */}
-      <section className="ins-latest-section" aria-labelledby="latest-insights-heading">
-        <div className="ins-shell">
-          <div className="ins-section-header">
-            <motion.p {...fadeIn(0.05)} className="ins-eyebrow">SUGGESTED ARTICLES</motion.p>
-            <motion.h2 {...fadeIn(0.12)} id="latest-insights-heading" className="ins-section-heading">
-              Strategic Insights for Navigating<br />the UAE with Confidence.
-            </motion.h2>
-          </div>
-
-          {/* Asymmetric Editorial Magazine Grid */}
-          <div className="ins-magazine-grid">
-            {/* Row 1: Large feature on left + 2 stacked on right */}
-            <div className="ins-mag-row-top">
-              {latestMagazineArticles[0] && (
-                <motion.div {...fadeIn(0.1)} className="h-full">
-                  <Link 
-                    to={`/insights/${latestMagazineArticles[0].slug}`} 
-                    className="ins-mag-card ins-mag-card-large h-full"
-                  >
-                    <div className="ins-mag-card-img-wrap">
-                      <img 
-                        src={latestMagazineArticles[0].featuredImage} 
-                        alt={latestMagazineArticles[0].imageAlt} 
-                        loading="lazy" 
-                      />
-                    </div>
-                    <div className="ins-mag-card-body">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="ins-badge">{latestMagazineArticles[0].category}</span>
-                        {latestMagazineArticles[0].isSuggested && (
-                          <span className="ins-badge-suggested">Suggested</span>
-                        )}
-                        <span className="ins-meta-item"><Clock size={12} /> {latestMagazineArticles[0].readingTime}</span>
-                      </div>
-                      <h3 className="ins-mag-card-title">{latestMagazineArticles[0].title}</h3>
-                      <p className="ins-mag-card-excerpt">{latestMagazineArticles[0].excerpt}</p>
-                      <div className="ins-mag-card-highlights">
-                        <span className="ins-mag-highlight-pill">
-                          <CheckCircle2 size={13} aria-hidden="true" />
-                          KYC dossier preparation & source of wealth
-                        </span>
-                        <span className="ins-mag-highlight-pill">
-                          <CheckCircle2 size={13} aria-hidden="true" />
-                          Commercial substance & ESR alignment
-                        </span>
-                      </div>
-                      <div className="ins-mag-card-footer">
-                        <span className="ins-meta-item"><Calendar size={13} /> {latestMagazineArticles[0].publishedDate}</span>
-                        <span className="ins-read-link text-sm font-semibold">
-                          Read Insight <ArrowRight size={15} />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
+            <div className="ins-search-wrap">
+              <Search size={18} className="ins-search-icon" aria-hidden="true" />
+              <input 
+                type="text" 
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                placeholder="Search by topic, keyword, or title..." 
+                className="ins-search-input"
+                aria-label="Search insights"
+              />
+              {searchQuery && (
+                <button 
+                  type="button" 
+                  onClick={() => setSearchQuery('')}
+                  className="ins-search-clear-btn"
+                  aria-label="Clear search query"
+                >
+                  <X size={16} />
+                </button>
               )}
+            </div>
+          </div>
 
-              {/* Right Stacked Column */}
-              <div className="ins-mag-stacked-col">
-                {latestMagazineArticles.slice(1, 3).map((article, idx) => (
-                  <motion.div key={article.id} {...fadeIn(0.18 + idx * 0.08)}>
+          {/* Status Counter Bar */}
+          <div className="ins-catalogue-status-bar">
+            <span className="ins-status-text">
+              Showing <strong>{filteredArticles.length}</strong> {filteredArticles.length === 1 ? 'guide' : 'guides'}
+              {selectedCategory !== 'All Insights' && (
+                <> in <strong>{selectedCategory}</strong></>
+              )}
+              {searchQuery && (
+                <> matching &ldquo;<strong>{searchQuery}</strong>&rdquo;</>
+              )}
+            </span>
+
+            {(selectedCategory !== 'All Insights' || searchQuery) && (
+              <button 
+                type="button" 
+                onClick={() => {
+                  setSelectedCategory('All Insights');
+                  setSearchQuery('');
+                }}
+                className="ins-reset-filter-btn"
+              >
+                Clear Filters
+              </button>
+            )}
+          </div>
+
+          {/* 3 in a row Grid Layout */}
+          {filteredArticles.length > 0 ? (
+            <div className="ins-grid" role="feed" aria-label="Insights directory">
+              {filteredArticles.map((article, index) => {
+                return (
+                  <motion.article 
+                    key={article.id}
+                    {...fadeIn(0.04 * Math.min(index, 6))}
+                    className="ins-card-item"
+                  >
                     <Link 
                       to={`/insights/${article.slug}`} 
-                      className="ins-mag-card ins-mag-card-stacked"
+                      className="ins-card-link group"
+                      aria-label={`Read guide: ${article.title}`}
                     >
-                      <div className="ins-mag-card-img-wrap">
+                      {/* Rectangular Image Frame */}
+                      <div className="ins-card-thumb-frame">
                         <img 
                           src={article.featuredImage} 
-                          alt={article.imageAlt} 
-                          loading="lazy" 
+                          alt={article.imageAlt}
+                          loading="lazy"
+                          width="480"
+                          height="300"
                         />
+                        <span className="ins-card-category-badge">{article.category}</span>
                       </div>
-                      <div className="ins-mag-card-body">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="ins-badge">{article.category}</span>
+
+                      {/* Card Content Body */}
+                      <div className="ins-card-body">
+                        <div className="ins-card-meta">
                           {article.isSuggested && (
                             <span className="ins-badge-suggested">Suggested</span>
                           )}
-                          <span className="ins-meta-item"><Clock size={12} /> {article.readingTime}</span>
+                          <span className="ins-meta-item">
+                            <Clock size={13} aria-hidden="true" />
+                            {article.readingTime}
+                          </span>
+                          <span className="ins-meta-item">
+                            <Calendar size={13} aria-hidden="true" />
+                            {article.publishedDate}
+                          </span>
                         </div>
-                        <h3 className="ins-mag-card-title">{article.title}</h3>
-                        <p className="ins-mag-card-excerpt line-clamp-2">{article.excerpt}</p>
-                        <div className="ins-mag-card-footer">
-                          <span className="ins-meta-item"><Calendar size={13} /> {article.publishedDate}</span>
-                          <span className="ins-read-link text-sm font-semibold">
-                            Read Insight <ArrowRight size={15} />
+
+                        <h3 className="ins-card-title">
+                          {article.title}
+                        </h3>
+
+                        <p className="ins-card-excerpt">
+                          {article.excerpt}
+                        </p>
+
+                        <div className="ins-card-footer">
+                          <span className="ins-card-read-btn">
+                            <span>Read Full Insight</span>
+                            <ArrowRight size={16} aria-hidden="true" />
                           </span>
                         </div>
                       </div>
                     </Link>
-                  </motion.div>
-                ))}
-              </div>
+                  </motion.article>
+                );
+              })}
             </div>
-
-            {/* Row 2: Two balanced cards */}
-            <div className="ins-mag-row-bottom">
-              {latestMagazineArticles.slice(3, 5).map((article, idx) => (
-                <motion.div key={article.id} {...fadeIn(0.15 + idx * 0.1)}>
-                  <Link 
-                    to={`/insights/${article.slug}`} 
-                    className="ins-mag-card ins-mag-card-half h-full"
-                  >
-                    <div className="ins-mag-card-img-wrap">
-                      <img 
-                        src={article.featuredImage} 
-                        alt={article.imageAlt} 
-                        loading="lazy" 
-                      />
-                    </div>
-                    <div className="ins-mag-card-body">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="ins-badge">{article.category}</span>
-                        {article.isSuggested && (
-                          <span className="ins-badge-suggested">Suggested</span>
-                        )}
-                        <span className="ins-meta-item"><Clock size={12} /> {article.readingTime}</span>
-                      </div>
-                      <h3 className="ins-mag-card-title">{article.title}</h3>
-                      <p className="ins-mag-card-excerpt">{article.excerpt}</p>
-                      <div className="ins-mag-card-footer">
-                        <span className="ins-meta-item"><Calendar size={13} /> {article.publishedDate}</span>
-                        <span className="ins-read-link text-sm font-semibold">
-                          Read Insight <ArrowRight size={15} />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
+          ) : (
+            <div className="ins-empty-state">
+              <Search size={34} className="mx-auto text-slate-400" aria-hidden="true" />
+              <h3 className="ins-empty-title">No Insights Found</h3>
+              <p className="ins-empty-text">
+                We couldn't find any guides matching your search criteria. Try adjusting your search query or selecting a different category.
+              </p>
+              <button 
+                type="button" 
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedCategory('All Insights');
+                }}
+                className="button button-primary"
+              >
+                Reset All Filters
+              </button>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
       {/* =================================================================
-          SECTION 05 — STRATEGIC PERSPECTIVES (CONNECTED NETWORK)
+          SECTION 04 — STRATEGIC PERSPECTIVES (CONNECTED NETWORK)
           ================================================================= */}
       <section className="ins-perspectives-section" aria-labelledby="perspectives-heading">
         <div className="ins-shell">
           <div className="ins-perspectives-header">
             <motion.p {...fadeIn(0.05)} className="ins-eyebrow">STRATEGIC PERSPECTIVES</motion.p>
             <motion.h2 {...fadeIn(0.12)} id="perspectives-heading" className="ins-section-heading">
-              Understand the Connections<br />Behind Every Decision.
+              Understand the Connections Behind Every Decision
             </motion.h2>
             <motion.p {...fadeIn(0.2)} className="ins-perspectives-lead">
               Important UAE decisions rarely exist in isolation. Business structure can influence banking. Residency can influence long-term planning. Investment decisions can affect liquidity and family objectives.
@@ -558,131 +492,6 @@ export default function InsightsPage({ onConsultation }) {
               </Link>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* =================================================================
-          SECTION 06 — INSIGHTS LIBRARY (SEARCH & FULL GRID)
-          ================================================================= */}
-      <section id="insights-library" className="ins-library-section" aria-labelledby="library-heading">
-        <div className="ins-shell">
-          <div className="ins-section-header">
-            <motion.p {...fadeIn(0.05)} className="ins-eyebrow">EXPLORE MORE</motion.p>
-            <motion.h2 {...fadeIn(0.12)} id="library-heading" className="ins-section-heading">
-              The GlowBiz Insights Library
-            </motion.h2>
-          </div>
-
-          {/* Search Bar & Category Controls */}
-          <div className="ins-library-controls">
-            {/* Search Input */}
-            <div className="ins-search-wrap">
-              <Search size={18} className="ins-search-icon" aria-hidden="true" />
-              <input 
-                type="text" 
-                value={searchQuery}
-                onChange={e => {
-                  setSearchQuery(e.target.value);
-                  setVisibleCount(6); // reset pagination when searching
-                }}
-                placeholder="Search insights by topic, keyword, or title..." 
-                className="ins-search-input"
-                aria-label="Search insights"
-              />
-              {searchQuery && (
-                <button 
-                  type="button" 
-                  onClick={() => setSearchQuery('')}
-                  className="ins-search-clear-btn"
-                  aria-label="Clear search query"
-                >
-                  <X size={16} />
-                </button>
-              )}
-            </div>
-
-            {/* Results Count & Filter Display */}
-            <div className="ins-results-count">
-              Showing <strong>{Math.min(visibleCount, filteredLibraryArticles.length)}</strong> of <strong>{filteredLibraryArticles.length}</strong> insights
-              {selectedCategory !== 'All Insights' && ` in ${selectedCategory}`}
-              {searchQuery && ` matching "${searchQuery}"`}
-            </div>
-          </div>
-
-          {/* 3-Column Structured Library Grid */}
-          {filteredLibraryArticles.length > 0 ? (
-            <div className="ins-library-grid">
-              {filteredLibraryArticles.slice(0, visibleCount).map((article, idx) => (
-                <motion.div 
-                  key={article.id}
-                  {...fadeIn(0.08 + (idx % 3) * 0.08)}
-                >
-                  <Link 
-                    to={`/insights/${article.slug}`} 
-                    className="ins-library-card h-full"
-                  >
-                    <div className="ins-library-card-img-wrap">
-                      <img 
-                        src={article.featuredImage} 
-                        alt={article.imageAlt} 
-                        loading="lazy" 
-                      />
-                    </div>
-                    <div className="ins-library-card-body">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="ins-badge">{article.category}</span>
-                        {article.isSuggested && (
-                          <span className="ins-badge-suggested">Suggested</span>
-                        )}
-                        <span className="ins-meta-item"><Clock size={12} /> {article.readingTime}</span>
-                      </div>
-
-                      <h3 className="ins-library-card-title">{article.title}</h3>
-                      <p className="ins-library-card-excerpt">{article.excerpt}</p>
-
-                      <div className="ins-library-card-footer">
-                        <span className="ins-meta-item"><Calendar size={13} /> {article.publishedDate}</span>
-                        <span className="ins-read-link text-sm font-semibold">
-                          Read Insight <ArrowRight size={15} />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="ins-empty-state">
-              <Search size={32} className="mx-auto text-slate-400" aria-hidden="true" />
-              <h3 className="ins-empty-title">No Insights Found</h3>
-              <p className="ins-empty-text">
-                We couldn't find any articles matching your search criteria. Try adjusting your search query or selecting a different category.
-              </p>
-              <button 
-                type="button" 
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('All Insights');
-                }}
-                className="button button-primary"
-              >
-                Reset Filters
-              </button>
-            </div>
-          )}
-
-          {/* Load More Button */}
-          {visibleCount < filteredLibraryArticles.length && (
-            <div className="ins-load-more-wrap">
-              <button 
-                type="button" 
-                onClick={() => setVisibleCount(prev => prev + 6)}
-                className="button button-secondary"
-              >
-                Load More Insights
-              </button>
-            </div>
-          )}
         </div>
       </section>
     </div>

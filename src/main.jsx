@@ -7,7 +7,8 @@ import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from 're
 import { ExpertiseSection } from './expertise';
 import BusinessStructuringPage from './business-structuring';
 import WhyGlowBizPage from './why-glowbiz';
-import { ServicesSection, ServicePage, ServicesHero, ConsultationPage } from './services';
+import { ServicesSection, ServicePage, ServicesHero } from './services';
+import ContactPage from './contact';
 import ProcessSection from './process';
 import InsightsPage from './insights';
 import InsightDetailPage from './insight-detail';
@@ -156,7 +157,6 @@ function Header({ onOpen }) {
                   : page === 'Contact'
                   ? location.pathname === '/contact'
                   : false;
-                const num = String(idx + 1).padStart(2, '0');
                 return (
                   <motion.button
                     key={page}
@@ -169,7 +169,6 @@ function Header({ onOpen }) {
                     }`}
                   >
                     <div className="flex items-center gap-4">
-                      <span className="text-sm font-bold text-sky-600 font-mono tracking-wider">{num}</span>
                       <span className="text-2xl sm:text-3xl font-semibold tracking-tight">{page}</span>
                     </div>
                     <ChevronRight size={22} className={`transition-transform group-hover:translate-x-1 ${active ? 'text-royal' : 'text-slate-300'}`} />
@@ -311,8 +310,8 @@ function Footer({ onOpen }) {
             <h4 className="footer-title text-navy font-bold text-sm tracking-wider uppercase mb-4">Core Services</h4>
             <ul className="footer-links space-y-2.5 text-sm text-slate-600">
               <li><Link to="/services/business-structuring" className="hover:text-royal transition">UAE Business Setup</Link></li>
-              <li><Link to="/services/banking-financial-structuring" className="hover:text-royal transition">Banking & Financial Structuring</Link></li>
               <li><Link to="/services/investment-real-estate" className="hover:text-royal transition">Investment & Real Estate</Link></li>
+              <li><Link to="/services/banking-financial-structuring" className="hover:text-royal transition">Banking & Financial Structuring</Link></li>
               <li><Link to="/services/golden-visa-residency" className="hover:text-royal transition">Golden Visa & Residency</Link></li>
               <li><Link to="/services/family-protection-succession-advisory" className="hover:text-royal transition">Family Protection & Succession Advisory</Link></li>
             </ul>
@@ -376,6 +375,7 @@ function App() {
   const onOpen = target => {
     if (target === 'Services') navigate('/services');
     else if (target === 'Insights') navigate('/insights');
+    else if (target === 'Consultation' || target === 'Contact') navigate('/contact');
     else setPage(target);
   };
   useEffect(() => {
@@ -393,6 +393,12 @@ function App() {
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute('content', 'Explore strategic insights from GlowBiz on UAE business setup, banking, residency, Golden Visa, investment, real estate and long-term planning for international clients.');
+      }
+    } else if (location.pathname === '/contact') {
+      document.title = 'Contact GlowBiz | UAE Business & Wealth Advisory';
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', 'Contact GlowBiz on WhatsApp to discuss UAE business setup, banking, residency, Golden Visa, investment, real estate and long-term planning requirements.');
       }
     } else if (location.pathname.startsWith('/insights/')) {
       // Let InsightDetailPage handle individual article SEO, schemas, and meta tags
@@ -414,10 +420,10 @@ function App() {
       <Routes>
         <Route path="/" element={<main id="main-content"><Hero onOpen={onOpen} /><ServicesSection /><ProcessSection /><CtaSection onOpen={onOpen} /></main>} />
         <Route path="/services" element={<main id="main-content"><ServicesHero /><ExpertiseSection /><CtaSection onOpen={onOpen} {...servicesCta} /></main>} />
-        <Route path="/why-glowbiz" element={<main id="main-content"><WhyGlowBizPage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...whyGlowbizCta} /></main>} />
-        <Route path="/insights" element={<main id="main-content"><InsightsPage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></main>} />
-        <Route path="/insights/:slug" element={<main id="main-content"><InsightDetailPage onConsultation={() => setPage('Consultation')} /></main>} />
-        <Route path="/contact" element={<ConsultationPage onConsultation={() => setPage('Consultation')} />} />
+        <Route path="/why-glowbiz" element={<main id="main-content"><WhyGlowBizPage onConsultation={() => onOpen('Consultation')} /><CtaSection onOpen={onOpen} {...whyGlowbizCta} /></main>} />
+        <Route path="/insights" element={<main id="main-content"><InsightsPage onConsultation={() => onOpen('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></main>} />
+        <Route path="/insights/:slug" element={<main id="main-content"><InsightDetailPage onConsultation={() => onOpen('Consultation')} /></main>} />
+        <Route path="/contact" element={<main id="main-content"><ContactPage /></main>} />
         <Route path="/services/business-structuring" element={<BusinessStructuringPage />} />
         {detailPages.map(data => <Route key={data.id} path={`/services/${data.id}`} element={<ServiceDetailPage data={data} />} />)}
         <Route path="/services/banking-financial-structuring" element={<ServiceDetailPage data={detailPages[0]} />} />
@@ -431,10 +437,13 @@ function App() {
         <Route path="/investment" element={<ServiceDetailPage data={detailPages[2]} />} />
         <Route path="/real-estate" element={<ServiceDetailPage data={detailPages[2]} />} />
         <Route path="/services/family-protection-succession-advisory" element={<ServiceDetailPage data={detailPages[3]} />} />
+        <Route path="/services/family-protection-succession" element={<ServiceDetailPage data={detailPages[3]} />} />
         <Route path="/services/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} />
         <Route path="/services/family" element={<ServiceDetailPage data={detailPages[3]} />} />
+        <Route path="/family-protection-succession" element={<ServiceDetailPage data={detailPages[3]} />} />
+        <Route path="/family-protection-succession-advisory" element={<ServiceDetailPage data={detailPages[3]} />} />
         <Route path="/family-protection" element={<ServiceDetailPage data={detailPages[3]} />} />
-        <Route path="/services/:serviceId" element={<><ServicePage onConsultation={() => setPage('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></>} />
+        <Route path="/services/:serviceId" element={<><ServicePage onConsultation={() => onOpen('Consultation')} /><CtaSection onOpen={onOpen} {...servicesCta} /></>} />
         <Route path="*" element={<main id="main-content" className="service-detail"><h1>Page not found</h1><Link to="/">Return home</Link></main>} />
       </Routes>
       <Footer onOpen={onOpen} />

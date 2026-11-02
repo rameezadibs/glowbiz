@@ -3,10 +3,10 @@
 .services-backdrop img { width: 100%; height: auto; object-fit: contain; object-position: center top; }
 .services-inner { max-width: 1440px; margin: auto; }
 .services-intro { margin-bottom: 36px; }
-.services-heading { font: 800 clamp(54px, 5.2vw, 84px)/1.08 'Outfit', sans-serif; letter-spacing: -0.03em; margin: 0 0 17px; }
-.services-heading em { color: inherit; font-style: normal; }
+.services-heading { font: 800 clamp(54px, 5.2vw, 84px)/1.08 'Outfit', sans-serif; letter-spacing: -0.03em; margin: 0 0 17px; color: #142f55; }
+.services-heading em { color: #124a9d; font-style: normal; }
 .services-description { font-size: 20px; line-height: 1.5; color: #60769a; margin: 0; max-width: 640px; }
-.service-card { position: relative; min-width: 0; overflow: hidden; border: 1px solid #ffffffec; border-radius: 20px; background: linear-gradient(120deg,#f9fcffed,#eff6ffea); box-shadow: 0 10px 28px #608abb0c; display: flex; flex-direction: column; }
+.service-card { position: relative; min-width: 0; overflow: hidden; border: 1px solid #ffffffec; border-radius: 20px; background: linear-gradient(120deg,#f9fcffed,#eff6ffea); box-shadow: 0 10px 28px #608abb0c; display: flex; flex-direction: column; cursor: pointer; }
 .service-photo { height: 235px; overflow: hidden; position: relative; }
 .service-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease, filter .7s ease; }
 .service-card:hover .service-photo img, .service-card:focus-within .service-photo img { transform: scale(1.05); filter: saturate(1.1); }

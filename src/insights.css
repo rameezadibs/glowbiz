@@ -444,248 +444,304 @@ body:has(.insight-detail-page) .site-header:not(.scrolled) .header-actions .menu
 }
 
 /* =====================================================================
-   SECTION 04 — LATEST INSIGHTS (EDITORIAL MAGAZINE LAYOUT)
+   SECTION 03 — ORGANIZED 1-BY-1 INSIGHTS CATALOGUE (LINEAR DIRECTORY)
    ===================================================================== */
-.ins-latest-section {
-  padding: clamp(20px, 2.5vw, 32px) 0 clamp(20px, 2.5vw, 32px);
-  background: var(--ins-ice);
+.ins-catalogue-section {
+  padding: clamp(32px, 4vw, 56px) 0 clamp(40px, 5vw, 64px);
+  background: #fbfdff;
   border-bottom: 1px solid var(--ins-border);
 }
 
-.ins-section-header {
-  margin-bottom: clamp(24px, 3.5vw, 36px);
+.ins-catalogue-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--ins-border-light);
 }
 
-.ins-section-heading {
+@media (min-width: 900px) {
+  .ins-catalogue-toolbar {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.ins-catalogue-header-info {
+  max-width: 660px;
+}
+
+.ins-catalogue-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ins-royal);
+  background: var(--ins-sky-soft);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(18, 74, 157, 0.15);
+}
+
+.ins-catalogue-heading {
   font-family: var(--ins-serif);
-  font-size: clamp(2.2rem, 3.2vw, 3.4rem);
-  font-weight: 600;
-  line-height: 1.12;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 700;
   color: var(--ins-navy);
+  margin: 0 0 10px;
+  line-height: 1.15;
+}
+
+.ins-catalogue-subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ins-muted);
   margin: 0;
 }
 
-/* Asymmetric Editorial Magazine Composition */
-.ins-magazine-grid {
+/* Status & reset filter bar */
+.ins-catalogue-status-bar {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.ins-mag-row-top {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-@media (min-width: 960px) {
-  .ins-mag-row-top {
-    grid-template-columns: 7fr 5fr;
-  }
-}
-
-.ins-mag-stacked-col {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.ins-mag-row-bottom {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-@media (min-width: 860px) {
-  .ins-mag-row-bottom {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* Magazine Cards */
-.ins-mag-card {
-  background: #ffffff;
-  border-radius: 14px;
-  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 12px 18px;
+  background: #f2f7fd;
+  border-radius: 10px;
   border: 1px solid var(--ins-border-light);
+}
+
+.ins-status-text {
+  font-size: 13.5px;
+  color: #315886;
+}
+
+.ins-status-text strong {
+  color: var(--ins-navy);
+}
+
+.ins-reset-filter-btn {
+  background: transparent;
+  border: 1px solid var(--ins-royal);
+  color: var(--ins-royal);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ins-reset-filter-btn:hover {
+  background: var(--ins-royal);
+  color: #ffffff;
+}
+
+/* =====================================================================
+   SECTION 03 — INSIGHTS 3-COLUMN CARD GRID DIRECTORY (RECTANGULAR CARDS)
+   ===================================================================== */
+.ins-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 24px;
+}
+
+@media (max-width: 1024px) {
+  .ins-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ins-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.ins-card-item {
   display: flex;
   flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(18, 74, 157, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(18, 74, 157, 0.04);
+  position: relative;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+  overflow: hidden;
+}
+
+.ins-card-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #124a9d, #3b82f6);
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.28s ease;
+}
+
+.ins-card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(18, 74, 157, 0.1);
+  border-color: rgba(18, 74, 157, 0.28);
+}
+
+.ins-card-item:hover::before {
+  opacity: 1;
+}
+
+.ins-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 4px 18px -4px rgba(20, 47, 85, 0.05);
-  height: 100%;
 }
 
-.ins-mag-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(18, 74, 157, 0.28);
-  box-shadow: 0 14px 34px -8px rgba(20, 47, 85, 0.12);
-}
-
-.ins-mag-card-img-wrap {
+/* Rectangular Image Frame on top of each card */
+.ins-card-thumb-frame {
   position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--ins-ice-alt);
+  border-bottom: 1px solid rgba(18, 74, 157, 0.08);
 }
 
-.ins-mag-card-img-wrap img {
+.ins-card-thumb-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.ins-mag-card:hover .ins-mag-card-img-wrap img {
-  transform: scale(1.025);
+.ins-card-item:hover .ins-card-thumb-frame img {
+  transform: scale(1.05);
 }
 
-/* Base Body Layout for All Magazine Cards — ensures footer always docks to the bottom with zero dead space */
-.ins-mag-card-body {
-  padding: 22px 24px;
-  flex: 1;
+/* Frosted glass category tag badge */
+.ins-card-category-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #124a9d;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 5px 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(18, 74, 157, 0.16);
+  box-shadow: 0 2px 8px rgba(18, 74, 157, 0.08);
+  z-index: 1;
+}
+
+/* Card Body */
+.ins-card-body {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  padding: 20px 22px 22px;
 }
 
-/* Variation: Card Large Feature */
-.ins-mag-card-large .ins-mag-card-img-wrap {
-  aspect-ratio: 16 / 10;
-  max-height: 340px;
-}
-
-.ins-mag-card-large .ins-mag-card-body {
-  padding: 24px 28px;
-  flex: 1;
+.ins-card-meta {
   display: flex;
-  flex-direction: column;
-}
-
-.ins-mag-card-large .ins-mag-card-title {
-  font-family: var(--ins-serif);
-  font-size: clamp(1.45rem, 1.8vw, 1.95rem);
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--ins-navy);
-  margin: 10px 0 12px;
-  transition: color 0.2s ease;
-}
-
-.ins-mag-card-large .ins-mag-card-excerpt {
-  font-size: 14.5px;
-  line-height: 1.6;
-  margin-bottom: 14px;
-}
-
-/* Strategic Highlights on Lead Feature */
-.ins-mag-card-highlights {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  margin-bottom: 18px;
-}
-
-.ins-mag-highlight-pill {
-  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: #274364;
-  background: #f1f6fc;
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #d8e5f2;
-  line-height: 1.35;
-}
-
-.ins-mag-highlight-pill svg {
-  color: var(--ins-royal);
-  flex-shrink: 0;
-}
-
-/* Compact stacked cards */
-.ins-mag-card-stacked {
-  height: 100%;
-}
-
-.ins-mag-card-stacked .ins-mag-card-img-wrap {
-  aspect-ratio: 16 / 7;
-  max-height: 155px;
-}
-
-.ins-mag-card-stacked .ins-mag-card-body {
-  padding: 16px 20px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.ins-mag-card-stacked .ins-mag-card-title {
-  font-family: var(--ins-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--ins-navy);
-  margin: 8px 0 8px;
-  transition: color 0.2s ease;
-}
-
-.ins-mag-card-stacked .ins-mag-card-excerpt {
-  font-size: 13.5px;
-  line-height: 1.5;
+  gap: 10px;
+  flex-wrap: wrap;
   margin-bottom: 12px;
 }
 
-/* Bottom row cards */
-.ins-mag-card-half .ins-mag-card-img-wrap {
-  aspect-ratio: 16 / 9;
-  max-height: 230px;
+.ins-badge-suggested {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0d5a3a;
+  background: #eafaf1;
+  border: 1px solid rgba(13, 90, 58, 0.2);
+  padding: 3px 10px;
+  border-radius: 9999px;
 }
 
-.ins-mag-card-half .ins-mag-card-body {
-  padding: 24px 26px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.ins-mag-card-half .ins-mag-card-title {
-  font-family: var(--ins-serif);
-  font-size: 1.35rem;
-  font-weight: 600;
-  line-height: 1.25;
+.ins-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.32;
   color: var(--ins-navy);
-  margin: 8px 0 10px;
+  margin: 0 0 10px;
+  letter-spacing: -0.015em;
   transition: color 0.2s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.64em;
 }
 
-.ins-mag-card-half .ins-mag-card-excerpt {
-  font-size: 14px;
-  line-height: 1.55;
-  margin-bottom: 14px;
-}
-
-.ins-mag-card:hover .ins-mag-card-title {
+.ins-card-item:hover .ins-card-title {
   color: var(--ins-royal);
 }
 
-.ins-mag-card-excerpt {
+.ins-card-excerpt {
+  font-family: 'DM Sans', sans-serif;
   font-size: 14px;
-  line-height: 1.62;
+  line-height: 1.58;
   color: var(--ins-muted);
-  margin-bottom: 16px;
-  flex-grow: 1;
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.ins-mag-card-footer {
-  margin-top: auto;
+.ins-card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: auto;
   padding-top: 14px;
-  border-top: 1px solid var(--ins-border-light);
+  border-top: 1px solid #edf4fb;
+}
+
+.ins-card-read-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ins-royal);
+  transition: all 0.2s ease;
+}
+
+.ins-card-read-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.ins-card-item:hover .ins-card-read-btn {
+  color: #0b3474;
+}
+
+.ins-card-item:hover .ins-card-read-btn svg {
+  transform: translateX(4px);
 }
 
 /* =====================================================================

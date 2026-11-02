@@ -189,45 +189,20 @@ export default function WhyGlowBizPage({ onConsultation }) {
             </motion.h2>
           </div>
 
-          <div className="wg-journey-timeline">
-            {/* Continuous vertical connecting line */}
-            <div className="wg-journey-spine" aria-hidden="true" />
-
-            {fivePrinciples.map((item, index) => {
-              const isOdd = index % 2 === 0;
-              return (
-                <div
-                  key={item.number}
-                  className={`wg-journey-step ${isOdd ? 'step-odd' : 'step-even'}`}
-                >
-                  {/* Milestone Marker along the line */}
-                  <div className="wg-step-milestone-marker" aria-hidden="true">
-                    {item.number}
-                  </div>
-
-                  {/* Text Column */}
-                  <motion.div {...fadeIn(0.1)} className="wg-step-text">
-                    <span className="wg-step-badge">PRINCIPLE {item.number}</span>
-                    <h3>{item.heading}</h3>
-                    <p>{item.content}</p>
-                  </motion.div>
-
-                  {/* Visual Column */}
-                  <motion.div {...fadeIn(0.2)} className="wg-step-visual">
-                    <div className={`wg-step-img-card ${item.isBespoke ? 'card-bespoke' : ''}`}>
-                      <img
-                        src={item.visual}
-                        alt={item.alt}
-                        loading="lazy"
-                        decoding="async"
-                        width="800"
-                        height="600"
-                      />
-                    </div>
-                  </motion.div>
+          <div className="wg-principles-grid">
+            {fivePrinciples.map((item, index) => (
+              <motion.article
+                key={item.number}
+                {...fadeIn(0.06 + index * 0.04)}
+                className="wg-principle-card"
+              >
+                <div className="wg-principle-card-top">
+                  <span className="wg-step-badge">STRATEGIC PRINCIPLE</span>
                 </div>
-              );
-            })}
+                <h3>{item.heading}</h3>
+                <p>{item.content}</p>
+              </motion.article>
+            ))}
           </div>
         </div>
       </section>
@@ -316,19 +291,9 @@ export default function WhyGlowBizPage({ onConsultation }) {
             {clientGroups.map((group, idx) => (
               <motion.article
                 key={group.title}
-                {...fadeIn(0.1 + idx * 0.1)}
-                className="wg-client-card"
+                {...fadeIn(0.08 + idx * 0.06)}
+                className="wg-client-card wg-client-card-compact"
               >
-                <div className="wg-client-img-wrap">
-                  <img
-                    src={group.image}
-                    alt={group.alt}
-                    loading="lazy"
-                    decoding="async"
-                    width="600"
-                    height="410"
-                  />
-                </div>
                 <div className="wg-client-body">
                   <span className="wg-client-eyebrow">{group.eyebrow}</span>
                   <h3 className="wg-client-title">{group.title}</h3>

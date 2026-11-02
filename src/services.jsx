@@ -70,14 +70,36 @@ function useReveal(delay = 0) {
 
 function ServiceCard({ service, index }) {
   const reduced = useReducedMotion();
+  const navigate = useNavigate();
   const Icon = service.icon;
   const targetPath = service.id === 'uae-business-setup' ? '/services/business-structuring' : `/services/${service.id}`;
-  return <motion.article {...useReveal(index * .09)} whileHover={reduced ? undefined : { y: -6 }} className="service-card">
-    <div className="service-photo"><motion.img whileHover={reduced ? undefined : {scale:1.05}} transition={{duration:.7}} src={`/assets/service-${service.image}-800.webp`} srcSet={`/assets/service-${service.image}-400.webp 400w, /assets/service-${service.image}-800.webp 800w`} sizes="(max-width: 600px) 88vw, (max-width: 1100px) 43vw, 22vw" alt={service.alt} loading="lazy" width="800" height="800" /><div className="service-photo-tint" /></div>
-    <span className="service-number" aria-hidden="true">{service.number}</span>
-    <svg className="service-curve" viewBox="0 0 350 150" preserveAspectRatio="none" aria-hidden="true"><path d="M0 2 C90 85 220 128 350 140 V150 H0Z" fill="#ffffff" fillOpacity=".47"/><path d="M0 26 C98 102 235 137 350 150 H0Z" fill="#f2f7ff" fillOpacity=".97"/></svg>
-    <div className="service-body"><span className="service-icon"><Icon size={31} strokeWidth={1.6} aria-hidden="true" /></span><h3>{service.lines.map(line => <span key={line}>{line}</span>)}</h3><p>{service.description}</p><Link to={targetPath} className="service-link" aria-label={`Learn more about ${service.title}`}><span className="learn-label">Learn More<span className="learn-rule" aria-hidden="true" /></span><span className="service-arrow" aria-hidden="true"><ArrowRight size={21} /></span></Link></div>
-  </motion.article>;
+  return (
+    <motion.article
+      {...useReveal(index * .09)}
+      whileHover={reduced ? undefined : { y: -6 }}
+      className="service-card cursor-pointer"
+      onClick={() => navigate(targetPath)}
+    >
+      <div className="service-photo">
+        <motion.img whileHover={reduced ? undefined : { scale: 1.05 }} transition={{ duration: .7 }} src={`/assets/service-${service.image}-800.webp`} srcSet={`/assets/service-${service.image}-400.webp 400w, /assets/service-${service.image}-800.webp 800w`} sizes="(max-width: 600px) 88vw, (max-width: 1100px) 43vw, 22vw" alt={service.alt} loading="lazy" width="800" height="800" />
+        <div className="service-photo-tint" />
+      </div>
+      <span className="service-number" aria-hidden="true">{service.number}</span>
+      <svg className="service-curve" viewBox="0 0 350 150" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 2 C90 85 220 128 350 140 V150 H0Z" fill="#ffffff" fillOpacity=".47"/>
+        <path d="M0 26 C98 102 235 137 350 150 H0Z" fill="#f2f7ff" fillOpacity=".97"/>
+      </svg>
+      <div className="service-body">
+        <span className="service-icon"><Icon size={31} strokeWidth={1.6} aria-hidden="true" /></span>
+        <h3>{service.lines.map(line => <span key={line}>{line}</span>)}</h3>
+        <p>{service.description}</p>
+        <div className="service-link" aria-label={`Learn more about ${service.title}`}>
+          <span className="learn-label">Learn More</span>
+          <span className="service-arrow" aria-hidden="true"><ArrowRight size={21} /></span>
+        </div>
+      </div>
+    </motion.article>
+  );
 }
 
 export function ServicesSection({ standalone = false }) {
