@@ -57,11 +57,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   transition: all 0.2s ease;
 }
 .site-header:not(.scrolled) .nav-link:not(.active) {
-  color: #ffffff;
+  color: #142f55;
 }
 .site-header:not(.scrolled) .nav-link:not(.active):hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.18);
+  color: #124a9d;
+  background: rgba(18, 74, 157, 0.08);
 }
 .menu-toggle {
   color: #142f55;
