@@ -183,8 +183,8 @@ function Header({ onOpen }) {
                 Book Consultation
               </Button>
               <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500 pt-2 px-1">
-                <span className="flex items-center gap-1.5"><MapPin size={14} className="text-royal shrink-0" /> DIFC Gate Precinct, Dubai</span>
-                <span className="flex items-center gap-1.5"><Phone size={14} className="text-royal shrink-0" /> +971 (0)4 800 4569</span>
+                <span className="flex items-center gap-1.5"><MapPin size={14} className="text-royal shrink-0" /> Office 908, International Business Tower, Business Bay</span>
+                <a href="tel:+971585515130" className="flex items-center gap-1.5 hover:text-royal transition"><Phone size={14} className="text-royal shrink-0" /> 0585515130</a>
               </div>
             </div>
           </motion.div>
@@ -300,9 +300,19 @@ function Footer({ onOpen }) {
               GlowBiz Solutions provides premier strategic business establishment, corporate banking, tax compliance, and residency advisory for entrepreneurs, investors, and global families in the UAE.
             </p>
             <div className="footer-contact-info space-y-2.5 text-sm text-slate-600">
-              <p className="flex items-center gap-3"><MapPin size={17} className="text-royal shrink-0" /> DIFC Gate Precinct, Dubai, United Arab Emirates</p>
-              <p className="flex items-center gap-3"><Mail size={17} className="text-royal shrink-0" /> advisory@glowbizsolutions.ae</p>
-              <p className="flex items-center gap-3"><Phone size={17} className="text-royal shrink-0" /> +971 (0)4 800 4569</p>
+              <p className="flex items-start gap-3">
+                <MapPin size={17} className="text-royal shrink-0 mt-0.5" />
+                <span>Office 908, International Business Tower, Al Amal Street, Business Bay, Dubai, UAE</span>
+              </p>
+              <p className="flex items-center gap-3">
+                <Mail size={17} className="text-royal shrink-0" />
+                <a href="mailto:info@glowbiz.ae" className="hover:text-royal transition">info@glowbiz.ae</a>
+              </p>
+              <p className="flex items-center gap-3">
+                <Phone size={17} className="text-royal shrink-0" />
+                <a href="tel:+971585515130" className="hover:text-royal transition">0585515130</a>
+                <span className="text-slate-400 text-xs">(+971 58 551 5130)</span>
+              </p>
             </div>
           </div>
 

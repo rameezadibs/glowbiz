@@ -8,9 +8,10 @@
 // Official GlowBiz WhatsApp phone number (country code + number without +, spaces, brackets, or dashes)
 // Configuration placeholder ready for exact production SIM assignment
 export const GLOWBIZ_WHATSAPP_CONFIG = {
-  // Format: country code + subscriber number (e.g., 97148004569 or official direct UAE mobile line)
-  phoneNumber: '97148004569',
-  displayNumber: '+971 (0)4 800 4569',
+  // Format: country code + subscriber number (e.g., 971585515130)
+  phoneNumber: '971585515130',
+  displayNumber: '0585515130',
+  internationalDisplayNumber: '+971 58 551 5130',
   defaultMessage: 'Hello GlowBiz, I would like to discuss my UAE requirements and understand how you can assist me.',
   topicMessages: {
     general: 'Hello GlowBiz, I would like to discuss my UAE requirements and understand how you can assist me.',

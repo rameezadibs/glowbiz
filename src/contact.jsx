@@ -10,7 +10,10 @@ import {
   ShieldCheck,
   CheckCircle2,
   Clock,
-  FileText
+  FileText,
+  MapPin,
+  Mail,
+  Phone
 } from 'lucide-react';
 import { updatePageSeo, setJsonLd, removeJsonLd } from './seo-utils';
 import { GLOWBIZ_WHATSAPP_CONFIG, getWhatsAppUrl } from './whatsapp-config';
@@ -123,14 +126,24 @@ export default function ContactPage() {
       '@id': 'https://glowbizsolutions.ae/contact#webpage',
       'url': 'https://glowbizsolutions.ae/contact',
       'name': 'Contact GlowBiz | UAE Business & Wealth Advisory',
-      'description': 'Direct WhatsApp consultation entry point for GlowBiz UAE business setup, banking, residency, and wealth advisory.',
+      'description': 'Direct contact details and consultation entry point for GlowBiz UAE business setup, banking, residency, and wealth advisory.',
       'mainEntity': {
         '@type': 'Organization',
         'name': 'GlowBiz Solutions',
         'url': 'https://glowbizsolutions.ae',
+        'email': 'info@glowbiz.ae',
+        'telephone': `+${GLOWBIZ_WHATSAPP_CONFIG.phoneNumber}`,
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': 'Office 908, International Business Tower, Al Amal Street',
+          'addressLocality': 'Business Bay',
+          'addressRegion': 'Dubai',
+          'addressCountry': 'AE'
+        },
         'contactPoint': {
           '@type': 'ContactPoint',
-          'telephone': `+${GLOWBIZ_WHATSAPP_CONFIG.phoneNumber}`,
+          'telephone': '+971585515130',
+          'email': 'info@glowbiz.ae',
           'contactType': 'consultation',
           'availableLanguage': ['English', 'Arabic']
         }
@@ -192,6 +205,67 @@ export default function ContactPage() {
                   <span className="cnt-live-dot" aria-hidden="true" />
                   <span>Direct Advisory • WhatsApp Official Channel</span>
                 </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================================
+          DIRECT CONTACT & OFFICE INFORMATION
+          ================================================================= */}
+      <section className="cnt-direct-info-section" aria-label="Official Contact Channels">
+        <div className="cnt-shell">
+          <div className="cnt-direct-cards-grid">
+            {/* Card 1: Office Address */}
+            <motion.div {...fadeIn(0.05)} className="cnt-direct-card">
+              <div className="cnt-direct-icon-wrap" aria-hidden="true">
+                <MapPin size={22} />
+              </div>
+              <div className="cnt-direct-content">
+                <span className="cnt-direct-label">OFFICE LOCATION</span>
+                <h3 className="cnt-direct-title">Business Bay, Dubai</h3>
+                <p className="cnt-direct-text">
+                  Office 908, International Business Tower<br />
+                  Al Amal Street, Business Bay<br />
+                  Dubai, United Arab Emirates
+                </p>
+                <span className="cnt-direct-subtext">Direct advisory & in-person consultations</span>
+              </div>
+            </motion.div>
+
+            {/* Card 2: Email */}
+            <motion.div {...fadeIn(0.1)} className="cnt-direct-card">
+              <div className="cnt-direct-icon-wrap" aria-hidden="true">
+                <Mail size={22} />
+              </div>
+              <div className="cnt-direct-content">
+                <span className="cnt-direct-label">EMAIL ADVISORY</span>
+                <h3 className="cnt-direct-title">Direct Inquiries</h3>
+                <p className="cnt-direct-text">
+                  <a href="mailto:info@glowbiz.ae" className="cnt-direct-link">
+                    info@glowbiz.ae
+                  </a>
+                </p>
+                <span className="cnt-direct-subtext">Official advisory correspondence & support</span>
+              </div>
+            </motion.div>
+
+            {/* Card 3: Phone */}
+            <motion.div {...fadeIn(0.15)} className="cnt-direct-card">
+              <div className="cnt-direct-icon-wrap" aria-hidden="true">
+                <Phone size={22} />
+              </div>
+              <div className="cnt-direct-content">
+                <span className="cnt-direct-label">PHONE & WHATSAPP</span>
+                <h3 className="cnt-direct-title">Direct Client Line</h3>
+                <p className="cnt-direct-text">
+                  <a href="tel:+971585515130" className="cnt-direct-link">
+                    0585515130
+                  </a>
+                  <span className="cnt-direct-alt-num">(+971 58 551 5130)</span>
+                </p>
+                <span className="cnt-direct-subtext">Available Mon–Sat • 9:00 AM – 6:00 PM GST</span>
               </div>
             </motion.div>
           </div>
@@ -378,7 +452,7 @@ export default function ContactPage() {
 
                 <div className="cnt-perks-footer">
                   <span className="cnt-perks-footer-text">
-                    Official UAE Strategic Advisory • DIFC Gate Precinct
+                    Official UAE Strategic Advisory • Office 908, International Business Tower, Business Bay
                   </span>
                 </div>
               </div>

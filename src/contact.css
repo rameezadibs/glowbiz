@@ -252,6 +252,120 @@ body:has(.contact-page) .site-header:not(.scrolled) .header-actions .menu-toggle
 }
 
 /* =====================================================================
+   DIRECT CONTACT & OFFICE CARDS
+   ===================================================================== */
+.cnt-direct-info-section {
+  position: relative;
+  padding: 44px 0 20px;
+  background: #ffffff;
+  z-index: 5;
+}
+
+.cnt-direct-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.cnt-direct-card {
+  background: #ffffff;
+  border: 1px solid var(--cnt-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: 0 10px 30px -10px rgba(20, 47, 85, 0.07);
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.cnt-direct-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -10px rgba(18, 74, 157, 0.16);
+  border-color: #9ac2ee;
+}
+
+.cnt-direct-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--cnt-sky-soft);
+  color: var(--cnt-royal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.cnt-direct-card:hover .cnt-direct-icon-wrap {
+  background: var(--cnt-royal);
+  color: #ffffff;
+}
+
+.cnt-direct-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cnt-direct-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #536b85;
+  margin-bottom: 5px;
+}
+
+.cnt-direct-title {
+  font-family: var(--cnt-serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--cnt-navy);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.cnt-direct-text {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #334e68;
+  margin: 0 0 6px;
+}
+
+.cnt-direct-link {
+  color: var(--cnt-royal);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cnt-direct-link:hover {
+  color: var(--cnt-royal-hover);
+  text-decoration: underline;
+}
+
+.cnt-direct-alt-num {
+  display: block;
+  font-size: 13px;
+  color: var(--cnt-muted);
+  margin-top: 2px;
+}
+
+.cnt-direct-subtext {
+  font-size: 12.5px;
+  color: var(--cnt-muted-light);
+}
+
+@media (max-width: 960px) {
+  .cnt-direct-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* =====================================================================
    SECTION 02 — ONE CONVERSATION, CLEARER NEXT STEPS
    ===================================================================== */
 .cnt-pathway-section {
