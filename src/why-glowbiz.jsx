@@ -124,12 +124,8 @@ export default function WhyGlowBizPage({ onConsultation }) {
           <img src="/why-glowbiz/waterfront.webp" alt="" width="1856" height="848" fetchPriority="high" />
         </motion.div>
         <div className="wg-waterfront-content">
-          <motion.p {...fadeIn(0.05)} className="wg-eyebrow">WHY GLOWBIZ</motion.p>
-          <motion.h1 {...fadeIn(0.15)} id="wg-hero-heading" className="wg-hero-title">
-            <span className="wg-title-navy">Why Clients</span>{' '}
-            <span className="wg-title-blue">Work With GlowBiz</span>
-          </motion.h1>
-          <motion.p {...fadeIn(0.25)} className="wg-hero-body">
+          <motion.h1 {...fadeIn(0.08)} id="wg-hero-heading" className="wg-waterfront-hero-title">WHY <em>GLOWBIZ</em></motion.h1>
+          <motion.p {...fadeIn(0.2)} className="wg-hero-body">
             GlowBiz is a strategic consultancy-not just a business setup provider. Clients choose us because our advisory goes beyond licences and forms. We focus on helping you make better structural decisions across business, banking, residency, investment, and long-term family planning.
           </motion.p>
           <motion.div {...fadeIn(0.35)} className="wg-button-group">

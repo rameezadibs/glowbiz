@@ -100,6 +100,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .eyebrow > span { height: 1px; width: 50px; background: #254f84; flex-shrink: 0; }
 h1 { font-family: 'Outfit', sans-serif; font-size: clamp(48px, 4.4vw, 72px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; margin: 0; }
 h1 > span { display: block; white-space: nowrap; }
+h1 em { color: #124a9d; font-style: normal; }
 .headline-muted { color: #6d8eb9; font-weight: 700; }
 .hero-description { max-width: 550px; margin: 24px 0 28px; color: #566d8c; font-size: 19.5px; line-height: 1.6; font-weight: 400; }
 .hero-actions { gap: 18px; }

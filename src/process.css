@@ -6,7 +6,7 @@
 .process-eyebrow span { width: 50px; height: 1px; background: #254f84; flex-shrink: 0; }
 .process-eyebrow span:last-child { transform: none; }
 .process-intro h2 { font: 800 clamp(54px, 5.2vw, 84px)/1.08 'Outfit', sans-serif; letter-spacing: -.03em; margin: 0 0 14px; color: #142f55; }
-.process-intro h2 em { color: inherit; font-style: normal; }
+.process-intro h2 em { color: #124a9d; font-style: normal; }
 .process-description { margin: auto; color: #60769a; font-size: 20px; line-height: 1.5; max-width: 640px; }
 .process-timeline { position: relative; }
 .process-panel { position: absolute; inset: 40px 0 0; border: 1px solid #ffffffc9; border-radius: 24px; background: #ffffff8c; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); box-shadow: 0 8px 30px #6487b805; }

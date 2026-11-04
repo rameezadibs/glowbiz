@@ -350,21 +350,10 @@ export default function InsightsPage({ onConsultation }) {
                       className="ins-card-link group"
                       aria-label={`Read guide: ${article.title}`}
                     >
-                      {/* Rectangular Image Frame */}
-                      <div className="ins-card-thumb-frame">
-                        <img 
-                          src={article.featuredImage} 
-                          alt={article.imageAlt}
-                          loading="lazy"
-                          width="480"
-                          height="300"
-                        />
-                        <span className="ins-card-category-badge">{article.category}</span>
-                      </div>
-
                       {/* Card Content Body */}
                       <div className="ins-card-body">
                         <div className="ins-card-meta">
+                          <span className="ins-card-category-badge">{article.category}</span>
                           {article.isSuggested && (
                             <span className="ins-badge-suggested">Suggested</span>
                           )}

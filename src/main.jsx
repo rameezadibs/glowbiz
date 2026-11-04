@@ -207,7 +207,7 @@ function Hero({ onOpen }) {
     <div className="hero-inner mx-auto">
       <div className="hero-content">
         <motion.p {...entrance(.1)} className="eyebrow flex items-center"><span aria-hidden="true" />YOUR GROWTH PARTNER IN THE UAE</motion.p>
-        <motion.h1 {...entrance(.23)} id="hero-heading"><span>Strategic UAE Business</span><span>&amp; Wealth Advisory</span><span>for Global Clients</span></motion.h1>
+        <motion.h1 {...entrance(.23)} id="hero-heading"><span>Strategic UAE Business</span><span>&amp; Wealth Advisory</span><span><em>for Global Clients</em></span></motion.h1>
         <motion.p {...entrance(.4)} className="hero-description">Helping entrepreneurs, investors and international families establish, manage and grow with confidence in the UAE.</motion.p>
         <motion.div {...entrance(.55)} className="hero-actions flex flex-wrap"><Button onClick={() => onOpen('Consultation')}>Book Consultation</Button><Button onClick={() => route('/services')}>Explore Services</Button></motion.div>
       </div>
