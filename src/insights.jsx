@@ -377,7 +377,7 @@ export default function InsightsPage({ onConsultation }) {
 
                         <div className="ins-card-footer">
                           <span className="ins-card-read-btn">
-                            <span>Read Full Insight</span>
+                            <span>Read Full Article</span>
                             <ArrowRight size={16} aria-hidden="true" />
                           </span>
                         </div>
