@@ -204,41 +204,22 @@ export default function InsightsPage({ onConsultation }) {
   return (
     <div className="insights-page">
       {/* =================================================================
-          SECTION 01 — INSIGHTS HERO
+          BLOGS HEADER & CATEGORIES NAVIGATION STRIP
           ================================================================= */}
-      <section className="ins-hero" aria-labelledby="insights-hero-heading">
-        <div className="ins-hero-bg-accent" aria-hidden="true" />
+      <section className="ins-blogs-header-section" aria-labelledby="blogs-main-heading">
         <div className="ins-shell">
-          <div className="ins-hero-center-wrap text-center">
-            <motion.div {...fadeIn(0.05)} className="ins-hero-content">
-              <p className="ins-eyebrow justify-center">GLOWBIZ INSIGHTS</p>
-              
-              <h1 id="insights-hero-heading" className="ins-hero-title">
-                <span className="ins-h1-navy">Clarity for Better </span>
-                <span className="ins-h1-blue">UAE Decisions.</span>
-              </h1>
-
-              <p className="ins-hero-lead">
-                Practical, structured advisory guides for entrepreneurs, investors and international families navigating business setup, banking readiness, residency, and long-term planning in the UAE.
-              </p>
-
-              <button 
-                type="button"
-                onClick={scrollToArticles}
-                className="ins-hero-scroll-btn"
-                aria-label="Scroll to insights directory"
-              >
-                <span>Browse All Insights</span>
-                <ArrowDown size={17} aria-hidden="true" />
-              </button>
-            </motion.div>
+          <div className="ins-blogs-header">
+            <h1 id="blogs-main-heading" className="ins-blogs-title">
+              Blogs
+            </h1>
+            <p className="ins-blogs-subtitle">
+              Explore advisory insights, guides, and strategic perspectives on UAE business setup, banking readiness, residency, and investments.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* =================================================================
-          SECTION 02 — CLEAN TOPIC NAVIGATION STRIP
-          ================================================================= */}
+      {/* CLEAN TOPIC NAVIGATION STRIP */}
       <nav className="ins-categories-strip" aria-label="Insight categories filter">
         <div className="ins-shell">
           <div className="ins-categories-inner">

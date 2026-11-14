@@ -78,7 +78,41 @@ body:has(.insight-detail-page) .site-header:not(.scrolled) .header-actions .menu
 }
 
 /* =====================================================================
-   SECTION 01 — INSIGHTS HERO
+   BLOGS HEADER SECTION
+   ===================================================================== */
+.ins-blogs-header-section {
+  position: relative;
+  padding-top: clamp(100px, 10vw, 130px);
+  padding-bottom: clamp(24px, 3.5vw, 40px);
+  background: #f4f8fd;
+  border-bottom: 1px solid var(--ins-border);
+}
+
+.ins-blogs-header {
+  max-width: 800px;
+}
+
+.ins-blogs-title {
+  font-family: var(--ins-serif);
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 750;
+  color: var(--ins-navy);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+
+.ins-blogs-subtitle {
+  font-family: var(--ins-sans);
+  font-size: clamp(15px, 1.15vw, 17.5px);
+  line-height: 1.6;
+  color: var(--ins-muted);
+  margin: 0;
+  max-width: 650px;
+}
+
+/* =====================================================================
+   SECTION 01 — INSIGHTS HERO (LEGACY)
    ===================================================================== */
 .ins-hero {
   position: relative;

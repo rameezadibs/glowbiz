@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowLeft, Building2, Box, Globe2, LayoutGrid, Settings2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Building2, Box, Globe2, LayoutGrid, Settings2, ChevronDown } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { expertiseServices } from './expertise-data';
 import './expertise.css';
 
 const areaIcons = [Building2, Box, Globe2, LayoutGrid, Settings2];
 export function ExpertiseSection() {
   const [active, setActive] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState(0); // tracks open accordion index on mobile (null for closed)
   const service = expertiseServices[active];
 
   function handleSelectService(index) {
     setActive(index);
+    setMobileOpen(prev => prev === index ? null : index);
     if (typeof window !== 'undefined' && window.innerWidth <= 1000) {
       const panel = document.getElementById('expertise-panel');
       if (panel) {
@@ -22,6 +25,11 @@ export function ExpertiseSection() {
         });
       }
     }
+  }
+
+  function handleMobileTabClick(index) {
+    setActive(index);
+    setMobileOpen(prev => prev === index ? null : index);
   }
 
   function navigateTabs(event, index) {
@@ -39,13 +47,101 @@ export function ExpertiseSection() {
       <p className="expertise-lead">Your business structure, banking, residency, investments and long-term family planning should not be treated as separate decisions. GlowBiz brings these areas together, helping you build a more coordinated approach to your UAE presence.</p>
     </div>
     <div className="expertise-layout">
-      <div className="expertise-tabs" role="tablist" aria-label="Explore our expertise" aria-orientation="vertical">
+      {/* Desktop Tabs */}
+      <div className="expertise-tabs expertise-desktop-tabs" role="tablist" aria-label="Explore our expertise" aria-orientation="vertical">
         {expertiseServices.map((item, index) => <button key={item.id} id={`expertise-tab-${index}`} role="tab" aria-selected={active === index} aria-controls="expertise-panel" tabIndex={active === index ? 0 : -1} onClick={() => handleSelectService(index)} onPointerMove={event => { if (event.pointerType === 'mouse') setActive(index); }} onKeyDown={event => navigateTabs(event, index)}>
           <span className="expertise-tab-number">0{index + 1}</span>
           <span className="expertise-name">{item.title}</span><span className="expertise-arrow" aria-hidden="true"><ArrowRight size={20} strokeWidth={1.3} /></span>
         </button>)}
       </div>
-      <div id="expertise-panel" role="tabpanel" aria-labelledby={`expertise-tab-${active}`} tabIndex={0} className="expertise-panel">
+
+      {/* Mobile Accordion Dropdown List */}
+      <div className="expertise-mobile-accordion" role="tablist" aria-label="Explore our expertise on mobile">
+        {expertiseServices.map((item, index) => {
+          const isOpen = mobileOpen === index;
+          return (
+            <div key={item.id} className={`expertise-accordion-item ${isOpen ? 'is-open' : ''}`}>
+              <button
+                type="button"
+                className="expertise-accordion-trigger"
+                onClick={() => handleMobileTabClick(index)}
+                aria-expanded={isOpen}
+                aria-controls={`expertise-accordion-body-${index}`}
+                id={`expertise-mobile-tab-${index}`}
+              >
+                <div className="expertise-accordion-trigger-left">
+                  <span className="expertise-tab-number">0{index + 1}</span>
+                  <span className="expertise-name">{item.title}</span>
+                </div>
+                <span className="expertise-accordion-chevron" aria-hidden="true">
+                  <ChevronDown size={18} strokeWidth={2.2} />
+                </span>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    id={`expertise-accordion-body-${index}`}
+                    role="region"
+                    aria-labelledby={`expertise-mobile-tab-${index}`}
+                    className="expertise-accordion-content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="expertise-accordion-inner">
+                      <p className="expertise-label">{item.label}</p>
+                      <h3 className="expertise-accordion-heading">
+                        {item.heading[0]} <span>{item.heading[1]}</span>
+                      </h3>
+
+                      <div className="expertise-accordion-image-wrap">
+                        <img
+                          src={item.image}
+                          alt={item.alt}
+                          loading="lazy"
+                          className="expertise-accordion-img"
+                        />
+                      </div>
+
+                      <div className="expertise-accordion-paragraphs">
+                        {item.paragraphs.map(p => (
+                          <p key={p}>{p}</p>
+                        ))}
+                      </div>
+
+                      <div className="expertise-areas">
+                        <p className="expertise-label">KEY AREAS INCLUDE</p>
+                        <ul>
+                          {item.areas.map((area, areaIdx) => {
+                            const Icon = areaIcons[areaIdx % areaIcons.length];
+                            return (
+                              <li key={area}>
+                                <span className="expertise-icon">
+                                  <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
+                                </span>
+                                <span>{area}</span>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+
+                      <Link className="expertise-cta expertise-accordion-cta" to={`/services/${item.id}`}>
+                        Learn More<ArrowRight size={18} aria-hidden="true" />
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Desktop Panel */}
+      <div id="expertise-panel" role="tabpanel" aria-labelledby={`expertise-tab-${active}`} tabIndex={0} className="expertise-panel expertise-desktop-panel">
         <div key={service.id} className="expertise-copy">
           <p className="expertise-label">{service.label}</p>
           <h3>{service.heading[0]}<span>{service.heading[1]}</span></h3>
